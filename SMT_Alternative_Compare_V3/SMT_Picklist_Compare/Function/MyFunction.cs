@@ -385,7 +385,7 @@ namespace SMT_Picklist_Compare.Function
         /// <returns></returns>
         /// CreatedBy: HoaiPT(???)
         /// UpdateBy: HoaiPT(06/02/2023)
-        public static string Add_Address(ref List<DataOut> listDataOut, string pathFile1, string pathFile2)
+        public static string Add_Address(ref List<DataOut> listDataOut, string pathFile1, string pathFile2, List<string> listE, List<string> listL)
         {
             try
             {
@@ -409,25 +409,44 @@ namespace SMT_Picklist_Compare.Function
                 {
                     if (string.IsNullOrWhiteSpace(itemData.tempMain) == false)
                     {
-                        var listObject = listLink1.Find(x => x.itemName == itemData.tempMain);
-                        if (listObject != null)
+                        List<string> listAfter = new List<string>();//Group cua theo nhom
+                        for (int i = 0; i < listE.Count; i++)
                         {
-                            itemData.address_1 = listObject.address;
+                            if (itemData.tempMain.Equals(listE[i]))
+                            {
+                                listAfter.Add(listL[i]);
+                            }
                         }
-                        else
+                        listAfter.Add(itemData.tempMain);
+
+                        foreach (var item in listAfter)
+                        {
+                            var listObject = listLink1.Find(x => x.itemName == item);
+                            if (listObject != null)
+                            {
+                                itemData.address_1 = listObject.address;
+                                break;
+                            }
+                        }
+                        if(itemData.address_1 == null)
                         {
                             itemData.address_1 = "Khong co 1";
                         }
 
-                        listObject = listLink2.Find(x => x.itemName == itemData.tempMain);
-                        if (listObject != null)
+                        foreach (var item in listAfter)
                         {
-                            itemData.address_2 = listObject.address;
+                            var listObject = listLink2.Find(x => x.itemName == item);
+                            if (listObject != null)
+                            {
+                                itemData.address_2 = listObject.address;
+                                break;
+                            }
                         }
-                        else
+                        if (itemData.address_2 == null)
                         {
                             itemData.address_2 = "Khong co 2";
                         }
+
                     }
                     else
                     {

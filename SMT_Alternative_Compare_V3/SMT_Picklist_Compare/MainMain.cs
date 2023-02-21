@@ -127,7 +127,7 @@ namespace SMT_Picklist_Compare
                 }
 
                 this.updateLable("Thực hiện thêm địa chỉ cho từng item");
-                string resultAddAddress = Function.MyFunction.Add_Address(ref listDataOut, this.valueInput.fileLinkData1, this.valueInput.fileLinkData2);
+                string resultAddAddress = Function.MyFunction.Add_Address(ref listDataOut, this.valueInput.fileLinkData1, this.valueInput.fileLinkData2, listFile_ETSD_E, listFile_ETSD_L);
                 switch (resultAddAddress)
                 {
                     case Model.ResultAddAddress.OK:
@@ -481,13 +481,13 @@ namespace SMT_Picklist_Compare
                 }
 
 
-
-
                 string pathFolder = Path.GetDirectoryName(this.valueInput.file_1) + @"\KET_QUA";
                 if (!Directory.Exists(pathFolder))
                 {
                     Directory.CreateDirectory(pathFolder);
                 }
+
+                //pathFolder = Path.GetDirectoryName(Path.GetDirectoryName(this.valueInput.file_1));
 
                 var allLines = (from item in listDataOut
                                 select new object[]
@@ -515,13 +515,19 @@ namespace SMT_Picklist_Compare
                     csv.AppendLine(string.Join(",", line));
                 });
 
-                string fileName = pathFolder + @"\" + this.getInfo.wo1 + "_" + this.getInfo.wo2 + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".csv";
+                string tempFile = this.getInfo.wo1 + "_" + this.getInfo.wo2 + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss");
+                string fileName = pathFolder + @"\" + tempFile + ".csv";
                 File.WriteAllText(fileName, csv.ToString());
+                
+               
+                string pathFolderOld = Path.GetDirectoryName(this.valueInput.file_1);
+                pathFolder = Path.GetDirectoryName(pathFolderOld);
+                System.IO.Directory.Move(pathFolderOld, pathFolder + @"\" + tempFile);
+                fileName = pathFolder + @"\" + tempFile + @"\KET_QUA\" + tempFile + ".csv";
+
+                this.ChangeNameFile(pathFolderOld, pathFolder + @"\" + tempFile);
 
                 MessageBox.Show("Thực hiện export dữ liệu thành công file:" + fileName, "Successful Export Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-                //Thuc hien lay du lieu
 
             }
             catch (Exception ex)
@@ -543,6 +549,16 @@ namespace SMT_Picklist_Compare
             this.getInfo.model2 = this.lblWO2.Text.Substring(this.lblWO2.Text.IndexOf(":") + 1);
         }
 
+        private void ChangeNameFile(string valueOld, string valueNew)
+        {
+            this.txtFile1.Text = this.valueInput.file_1.Replace(valueOld, valueNew);
+            this.txtFileETSD1.Text = this.valueInput.file_ETSD1.Replace(valueOld, valueNew);
+            this.txtFileLinkData1.Text = this.valueInput.fileLinkData1.Replace(valueOld, valueNew);
+
+            this.txtFile2.Text = this.valueInput.file_2.Replace(valueOld, valueNew);
+            this.txtFileETSD2.Text = this.valueInput.file_ETSD2.Replace(valueOld, valueNew);
+            this.txtFileLinkData2.Text = this.valueInput.fileLinkData2.Replace(valueOld, valueNew);
+        }
 
 
 

@@ -265,7 +265,6 @@ namespace SMT_Picklist_Compare
             this.groupBox2.TabIndex = 106;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chọn Picklist WO1 (Đang sản xuất):";
-          //  this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // btnLinkFile
             // 
@@ -390,7 +389,7 @@ namespace SMT_Picklist_Compare
             this.groupBox1.Controls.Add(this.btnExportCSV);
             this.groupBox1.Controls.Add(this.btnSearchFresh);
             this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.Location = new System.Drawing.Point(330, 21);
+            this.groupBox1.Location = new System.Drawing.Point(336, 21);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(358, 66);
             this.groupBox1.TabIndex = 103;
