@@ -202,6 +202,7 @@ namespace SMT_Picklist_Compare
                             //Thuc hien clear du lieu ban dau
                             this.ClearDataFirst();
                             this.ClearDataInput();//Clear du lieu bien tam
+                            this.ClearDataResult();
 
                             this.txtFileWOFirst.Text = tempResult;
                             this.txtFileWOFirst.SelectionStart = tempResult.Length;//Select vao vi tri cuoi cung
@@ -275,7 +276,8 @@ namespace SMT_Picklist_Compare
         private void MainMain_Load(object sender, EventArgs e)
         {
             this.actionButton(true);
-            this.txtFile1.Focus();
+           
+            this.ActiveControl = this.txtFileWOFirst;
             this.txtFileWOFirst.Text = @"P:\96. Share Data\99. Other\13. IT\HOAI\SMT-Compare_A\TEST\XRHP06733.csv";
 
 

@@ -100,7 +100,7 @@ namespace SMT_Picklist_Compare.Model
         public const string ERROR_001 = "Lỗi không được để trống địa chỉ Picklist WO1 (Sản xuất)!";
         public const string ERROR_002 = "Lỗi không tồn tại file Picklist WO1 (Sản xuất)!";
         public const string ERROR_003 = "Lỗi file Picklist WO 1 sản xuất không thuộc định dạng file .csv";
-        public const string ERROR_004 = "Lỗi thiếu file trong thư mục số lượng file 6 (tối thiểu = 4 với trường hợp trùng Model)!";
+        public const string ERROR_004 = "Lỗi thiếu file trong thư mục số lượng file <= 6 !";
         public const string ERROR_005 = "File chọn Picklist WO1 (Sản xuất) không phải là file WO!";
 
         public const string ERROR_006 = "Trong thư mục {0} không tồn tại tên file Feeder chứa model {1}!";

@@ -34,7 +34,7 @@ namespace SMT_Picklist_Compare.Function
 
                 string pathFolder = Path.GetDirectoryName(fileWOFirst);//Thuc hien lay ten
                 List<string> listFileCSV = Directory.GetFiles(pathFolder, "*.csv").ToList();
-                if (!(listFileCSV.Count == 4 || listFileCSV.Count == 6))//Truong hop = 4 file khi trung model
+                if (!(listFileCSV.Count <= 6))//Truong hop = 4 file khi trung model
                 {
                     return MdlCommon.ERROR_004;
                 }
