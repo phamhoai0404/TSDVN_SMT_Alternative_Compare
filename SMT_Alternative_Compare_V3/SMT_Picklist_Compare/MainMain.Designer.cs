@@ -33,19 +33,19 @@ namespace SMT_Picklist_Compare
             this.pnlMain = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtFileETSD2 = new System.Windows.Forms.TextBox();
             this.txtFileLinkData1 = new System.Windows.Forms.TextBox();
             this.txtFile1 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.txtFileETSD1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtFile2 = new System.Windows.Forms.TextBox();
             this.txtFileLinkData2 = new System.Windows.Forms.TextBox();
-            this.txtFileETSD2 = new System.Windows.Forms.TextBox();
-            this.txtFileETSD1 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnLinkFile = new System.Windows.Forms.Button();
             this.txtFileWOFirst = new System.Windows.Forms.TextBox();
@@ -127,6 +127,15 @@ namespace SMT_Picklist_Compare
             this.panel3.Size = new System.Drawing.Size(365, 162);
             this.panel3.TabIndex = 1;
             // 
+            // txtFileETSD2
+            // 
+            this.txtFileETSD2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFileETSD2.Location = new System.Drawing.Point(80, 122);
+            this.txtFileETSD2.Name = "txtFileETSD2";
+            this.txtFileETSD2.ReadOnly = true;
+            this.txtFileETSD2.Size = new System.Drawing.Size(272, 26);
+            this.txtFileETSD2.TabIndex = 3;
+            // 
             // txtFileLinkData1
             // 
             this.txtFileLinkData1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -144,6 +153,16 @@ namespace SMT_Picklist_Compare
             this.txtFile1.ReadOnly = true;
             this.txtFile1.Size = new System.Drawing.Size(347, 26);
             this.txtFile1.TabIndex = 1;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(3, 122);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(58, 16);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "ETSD 1:";
             // 
             // label6
             // 
@@ -178,6 +197,15 @@ namespace SMT_Picklist_Compare
             this.panel5.Size = new System.Drawing.Size(365, 148);
             this.panel5.TabIndex = 1;
             // 
+            // txtFileETSD1
+            // 
+            this.txtFileETSD1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFileETSD1.Location = new System.Drawing.Point(80, 119);
+            this.txtFileETSD1.Name = "txtFileETSD1";
+            this.txtFileETSD1.ReadOnly = true;
+            this.txtFileETSD1.Size = new System.Drawing.Size(272, 26);
+            this.txtFileETSD1.TabIndex = 2;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -187,6 +215,16 @@ namespace SMT_Picklist_Compare
             this.label3.Size = new System.Drawing.Size(89, 16);
             this.label3.TabIndex = 0;
             this.label3.Text = "Picklist WO 2:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 119);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 16);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "ETSD 2:";
             // 
             // label7
             // 
@@ -216,44 +254,6 @@ namespace SMT_Picklist_Compare
             this.txtFileLinkData2.Size = new System.Drawing.Size(347, 26);
             this.txtFileLinkData2.TabIndex = 1;
             // 
-            // txtFileETSD2
-            // 
-            this.txtFileETSD2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFileETSD2.Location = new System.Drawing.Point(80, 122);
-            this.txtFileETSD2.Name = "txtFileETSD2";
-            this.txtFileETSD2.ReadOnly = true;
-            this.txtFileETSD2.Size = new System.Drawing.Size(272, 26);
-            this.txtFileETSD2.TabIndex = 3;
-            // 
-            // txtFileETSD1
-            // 
-            this.txtFileETSD1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFileETSD1.Location = new System.Drawing.Point(80, 119);
-            this.txtFileETSD1.Name = "txtFileETSD1";
-            this.txtFileETSD1.ReadOnly = true;
-            this.txtFileETSD1.Size = new System.Drawing.Size(272, 26);
-            this.txtFileETSD1.TabIndex = 2;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(3, 122);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(58, 16);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "ETSD 1:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 119);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 16);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "ETSD 2:";
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnLinkFile);
@@ -264,7 +264,8 @@ namespace SMT_Picklist_Compare
             this.groupBox2.Size = new System.Drawing.Size(389, 110);
             this.groupBox2.TabIndex = 106;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Chọn Picklist WO1 (Sản xuất):";
+            this.groupBox2.Text = "Chọn Picklist WO1 (Đang sản xuất):";
+          //  this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // btnLinkFile
             // 

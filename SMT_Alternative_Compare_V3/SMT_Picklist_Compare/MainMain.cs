@@ -278,13 +278,7 @@ namespace SMT_Picklist_Compare
         {
             this.actionButton(true);
             this.ActiveControl = this.txtFileWOFirst;
-            this.txtFileWOFirst.Text = @"P:\96. Share Data\99. Other\13. IT\HOAI\SMT-Compare_A\TEST\XRHP06733.csv";
-
-
-
-
-
-
+            //this.txtFileWOFirst.Text = @"P:\96. Share Data\99. Other\13. IT\HOAI\SMT-Compare_A\TEST\XRHP06733.csv";
         }
         #region Action Style
         /// <summary>
@@ -616,5 +610,7 @@ namespace SMT_Picklist_Compare
             this.valueInput.file_ETSD1 = null;
             this.valueInput.file_ETSD2 = null;
         }
+
+       
     }
 }
