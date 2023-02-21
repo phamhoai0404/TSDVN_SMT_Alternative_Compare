@@ -28,6 +28,7 @@ namespace SMT_Picklist_Compare.Function
                     ofd.Filter = Model.ConstSelectFile.TYPE_FILE;
                     if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
+
                         return ofd.FileName;
                     }
                     return Model.ResultSelectFile.NOT_SELECT_FILE;

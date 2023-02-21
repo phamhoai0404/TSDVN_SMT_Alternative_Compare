@@ -42,7 +42,6 @@ namespace SMT_Picklist_Compare
             this.label7 = new System.Windows.Forms.Label();
             this.txtFile2 = new System.Windows.Forms.TextBox();
             this.txtFileLinkData2 = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.txtFileETSD2 = new System.Windows.Forms.TextBox();
             this.txtFileETSD1 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -77,7 +76,6 @@ namespace SMT_Picklist_Compare
             this.groupBox3.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picExecute)).BeginInit();
@@ -109,7 +107,6 @@ namespace SMT_Picklist_Compare
             // 
             this.groupBox3.Controls.Add(this.panel3);
             this.groupBox3.Controls.Add(this.panel5);
-            this.groupBox3.Controls.Add(this.panel4);
             this.groupBox3.Location = new System.Drawing.Point(21, 146);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(389, 355);
@@ -119,13 +116,15 @@ namespace SMT_Picklist_Compare
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.txtFileETSD2);
             this.panel3.Controls.Add(this.txtFileLinkData1);
             this.panel3.Controls.Add(this.txtFile1);
+            this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Location = new System.Drawing.Point(12, 21);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(365, 114);
+            this.panel3.Size = new System.Drawing.Size(365, 162);
             this.panel3.TabIndex = 1;
             // 
             // txtFileLinkData1
@@ -168,13 +167,15 @@ namespace SMT_Picklist_Compare
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.txtFileETSD1);
             this.panel5.Controls.Add(this.label3);
+            this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.label7);
             this.panel5.Controls.Add(this.txtFile2);
             this.panel5.Controls.Add(this.txtFileLinkData2);
-            this.panel5.Location = new System.Drawing.Point(12, 141);
+            this.panel5.Location = new System.Drawing.Point(12, 189);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(365, 108);
+            this.panel5.Size = new System.Drawing.Size(365, 148);
             this.panel5.TabIndex = 1;
             // 
             // label3
@@ -215,21 +216,10 @@ namespace SMT_Picklist_Compare
             this.txtFileLinkData2.Size = new System.Drawing.Size(347, 26);
             this.txtFileLinkData2.TabIndex = 1;
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.txtFileETSD2);
-            this.panel4.Controls.Add(this.txtFileETSD1);
-            this.panel4.Controls.Add(this.label10);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Location = new System.Drawing.Point(12, 255);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(365, 92);
-            this.panel4.TabIndex = 3;
-            // 
             // txtFileETSD2
             // 
             this.txtFileETSD2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFileETSD2.Location = new System.Drawing.Point(81, 20);
+            this.txtFileETSD2.Location = new System.Drawing.Point(80, 122);
             this.txtFileETSD2.Name = "txtFileETSD2";
             this.txtFileETSD2.ReadOnly = true;
             this.txtFileETSD2.Size = new System.Drawing.Size(272, 26);
@@ -238,7 +228,7 @@ namespace SMT_Picklist_Compare
             // txtFileETSD1
             // 
             this.txtFileETSD1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFileETSD1.Location = new System.Drawing.Point(81, 52);
+            this.txtFileETSD1.Location = new System.Drawing.Point(80, 119);
             this.txtFileETSD1.Name = "txtFileETSD1";
             this.txtFileETSD1.ReadOnly = true;
             this.txtFileETSD1.Size = new System.Drawing.Size(272, 26);
@@ -248,7 +238,7 @@ namespace SMT_Picklist_Compare
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(4, 20);
+            this.label10.Location = new System.Drawing.Point(3, 122);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(58, 16);
             this.label10.TabIndex = 0;
@@ -258,7 +248,7 @@ namespace SMT_Picklist_Compare
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(4, 52);
+            this.label5.Location = new System.Drawing.Point(3, 119);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 16);
             this.label5.TabIndex = 0;
@@ -582,8 +572,6 @@ namespace SMT_Picklist_Compare
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -617,7 +605,6 @@ namespace SMT_Picklist_Compare
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtFileETSD1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox txtFile2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel3;

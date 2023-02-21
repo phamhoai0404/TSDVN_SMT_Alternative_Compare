@@ -199,6 +199,10 @@ namespace SMT_Picklist_Compare
                     switch (typeClick)
                     {
                         case Model.TypeClick.FILE_WO_FIRST:
+                            //Thuc hien clear du lieu ban dau
+                            this.ClearDataFirst();
+                            this.ClearDataInput();//Clear du lieu bien tam
+
                             this.txtFileWOFirst.Text = tempResult;
                             this.txtFileWOFirst.SelectionStart = tempResult.Length;//Select vao vi tri cuoi cung
                             break;
@@ -272,6 +276,7 @@ namespace SMT_Picklist_Compare
         {
             this.actionButton(true);
             this.txtFile1.Focus();
+            this.txtFileWOFirst.Text = @"P:\96. Share Data\99. Other\13. IT\HOAI\SMT-Compare_A\TEST\XRHP06733.csv";
 
 
 
@@ -488,15 +493,48 @@ namespace SMT_Picklist_Compare
         /// CreatedBy: HoaiPT(20/02/2023)
         private void btnLinkFile_Click(object sender, EventArgs e)
         {
-            //Thuc hien clear du lieu ban dau
-            this.ClearDataFirst();
-            this.ClearDataInput();//Clear du lieu bien tam
-
-            string resultValidate = Function.MyFunction2.CheckWOFirst(this.txtFileWOFirst.Text,ref this.valueInput);
-            if (!resultValidate.Equals(MdlCommon.OK))
+            try
             {
-                MessageBox.Show(resultValidate, "Error Check Link File Auto", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+
+
+                this.actionButton(false);
+                this.updateLable("Thực hiện link file...");
+                //Thuc hien clear du lieu ban dau
+                this.ClearDataFirst();
+                this.ClearDataInput();//Clear du lieu bien tam
+
+                string resultValidate = Function.MyFunction2.CheckWOFirst(this.txtFileWOFirst.Text, ref this.valueInput);
+                if (!resultValidate.Equals(MdlCommon.OK))
+                {
+                    MessageBox.Show(resultValidate, "Error Check Link File Auto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                this.txtFile1.Text = this.valueInput.file_1;
+                this.txtFile1.SelectionStart = this.valueInput.file_1.Length;
+
+                this.txtFile2.Text = this.valueInput.file_2;
+                this.txtFile2.SelectionStart = this.valueInput.file_2.Length;
+
+                this.txtFileETSD1.Text = this.valueInput.file_ETSD1;
+                this.txtFileETSD1.SelectionStart = this.valueInput.file_ETSD1.Length;
+
+                this.txtFileETSD2.Text = this.valueInput.file_ETSD2;
+                this.txtFileETSD2.SelectionStart = this.valueInput.file_ETSD2.Length;
+
+                this.txtFileLinkData1.Text = this.valueInput.fileLinkData1;
+                this.txtFileLinkData1.SelectionStart = this.valueInput.fileLinkData1.Length;
+
+                this.txtFileLinkData2.Text = this.valueInput.fileLinkData2;
+                this.txtFileLinkData2.SelectionStart = this.valueInput.fileLinkData2.Length;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra trong quá trình chạy chương trình liên hệ bộ phận IT để được hỗ trợ: " + ex.Message, "Error Program", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.actionButton(true);
             }
 
         }

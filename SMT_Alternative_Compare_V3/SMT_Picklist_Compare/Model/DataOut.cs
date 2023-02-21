@@ -72,4 +72,29 @@ namespace SMT_Picklist_Compare.Model
         public string model2 { get; set; }
 
     }
+    public class GetFileWO
+    {
+        public string modelName { get; set; }
+        public string nameWO { get; set; }
+        public bool typeFileWO { get; set; }
+    }
+    public class GetFile
+    {
+        public string typeFile { get; set; }
+        public string modelName { get; set; }
+        public string nameWO { get; set; }
+        public string pathFile { get; set; }
+
+        public GetFile()
+        {
+
+        }
+        public GetFile(GetFile s)
+        {
+            this.typeFile = s.typeFile;
+            this.modelName = s.modelName;
+            this.nameWO = s.nameWO;
+            this.pathFile = s.pathFile;
+        }
+    }
 }
