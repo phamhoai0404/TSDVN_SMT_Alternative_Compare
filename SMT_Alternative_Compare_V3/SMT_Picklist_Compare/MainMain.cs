@@ -515,7 +515,7 @@ namespace SMT_Picklist_Compare
                     csv.AppendLine(string.Join(",", line));
                 });
 
-                string tempFile = this.getInfo.wo1 + "_" + this.getInfo.wo2 + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss");
+                string tempFile = this.getInfo.wo1 + "_" + this.getInfo.wo2 + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
                 string fileName = pathFolder + @"\" + tempFile + ".csv";
                 File.WriteAllText(fileName, csv.ToString());
                 
