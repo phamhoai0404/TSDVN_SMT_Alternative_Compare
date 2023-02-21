@@ -63,7 +63,7 @@ namespace SMT_Picklist_Compare.Function
                 }
                 if (valueOut.fileLinkData1 == null)
                 {
-                    return string.Format(MdlCommon.ERROR_006, pathFolder, wo1.modelName);
+                    return "Picklist WO 1: " + string.Format(MdlCommon.ERROR_006, pathFolder, wo1.modelName);
                 }
                 listFileCSV.Remove(valueOut.fileLinkData1);
 
@@ -102,15 +102,16 @@ namespace SMT_Picklist_Compare.Function
                             break;
                     }
                 }
-                //Truong hop loi ETSD
-                if (valueOut.file_ETSD1 == null)
-                {
-                    return string.Format(MdlCommon.ERROR_007, pathFolder, wo1.modelName);
-                }
                 if (listETSD.Count > 1)
                 {
                     return string.Format(MdlCommon.ERROR_009, pathFolder);
                 }
+                //Truong hop loi ETSD
+                if (valueOut.file_ETSD1 == null)
+                {
+                    return "Picklist WO 1: " + string.Format(MdlCommon.ERROR_007, pathFolder, wo1.modelName);
+                }
+                
 
                 if (valueOut.file_2 == null)
                 {
@@ -132,16 +133,30 @@ namespace SMT_Picklist_Compare.Function
                     }
                     else
                     {
-                        return string.Format(MdlCommon.ERROR_006, pathFolder, wo2.modelName);
+                        return "Picklist WO 2: " + string.Format(MdlCommon.ERROR_006, pathFolder, wo2.modelName);
                     }
                 }
 
                 //Kiem tra neu ten model cua ETSD = WO2 thi de lai
-                if (listETSD[0].modelName.Equals(wo2.modelName))
+                if(listETSD.Count == 1)//Truong hop co du lieu ETSD 2
                 {
-                    valueOut.file_ETSD2 = listETSD[0].pathFile;
+                    if (listETSD[0].modelName.Equals(wo2.modelName))
+                    {
+                        valueOut.file_ETSD2 = listETSD[0].pathFile;
+                    }
+                    else//Nhung wo name lai khong bang du lieu co kiem tra xem co bang 1 hay khong
+                    {
+                        if (wo1.modelName.Equals(wo2.modelName))
+                        {
+                            valueOut.file_ETSD2 = valueOut.file_ETSD1;
+                        }
+                        else
+                        {
+                            return "Picklist WO 2: " + string.Format(MdlCommon.ERROR_007, pathFolder, wo2.modelName);
+                        }
+                    }
                 }
-                else
+                else//Truong hop khong co du lieu file ETSD 2
                 {
                     if (wo1.modelName.Equals(wo2.modelName))
                     {
@@ -149,13 +164,10 @@ namespace SMT_Picklist_Compare.Function
                     }
                     else
                     {
-                        return string.Format(MdlCommon.ERROR_007, pathFolder, wo2.modelName);
+                        return "Picklist WO 2: " + string.Format(MdlCommon.ERROR_007, pathFolder, wo2.modelName);
                     }
                 }
-
-
-               // string k = "9";
-
+               
 
                 return MdlCommon.OK;
             }

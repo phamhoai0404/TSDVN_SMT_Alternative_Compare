@@ -418,7 +418,7 @@ namespace SMT_Picklist_Compare
             this.btnExportCSV.Size = new System.Drawing.Size(35, 33);
             this.btnExportCSV.TabIndex = 102;
             this.btnExportCSV.UseVisualStyleBackColor = false;
-            this.btnExportCSV.Click += new System.EventHandler(this.btnExportCSV_Click);
+            this.btnExportCSV.Click += new System.EventHandler(this.btnExportCSV_V2_Click);
             // 
             // btnSearchFresh
             // 

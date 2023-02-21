@@ -105,7 +105,7 @@ namespace SMT_Picklist_Compare.Model
 
         public const string ERROR_006 = "Trong thư mục {0} không tồn tại tên file Feeder chứa model {1}!";
         public const string ERROR_007 = "Trong thư mục {0} không tồn tại file ETSD chứa model {1}";
-        public const string ERROR_008 = "Trong thư mục {0} không tồn tại file Picklist 2";
+        public const string ERROR_008 = "Trong thư mục {0} không tồn tại file Picklist WO 2";
         public const string ERROR_009 = "Trong thư mục {0} có nhiều hơn 3 file ETSD!";
         //public const string ERROR_009 = "Trong thư mục {0} có nhiều hơn 3 file ETSD!";
     }

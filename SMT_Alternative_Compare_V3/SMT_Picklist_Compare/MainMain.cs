@@ -51,6 +51,7 @@ namespace SMT_Picklist_Compare
             this.dgvResult.DataSource = null;//Reset ve null
             this.lblWO1.Text = "No 1";//set null
             this.lblWO2.Text = "No 2";//set null
+            this.listDataOut.Clear();
         }
         private void ClearDataFirst()
         {
@@ -276,7 +277,6 @@ namespace SMT_Picklist_Compare
         private void MainMain_Load(object sender, EventArgs e)
         {
             this.actionButton(true);
-           
             this.ActiveControl = this.txtFileWOFirst;
             this.txtFileWOFirst.Text = @"P:\96. Share Data\99. Other\13. IT\HOAI\SMT-Compare_A\TEST\XRHP06733.csv";
 
@@ -334,7 +334,7 @@ namespace SMT_Picklist_Compare
         /// CreatedBy: HoaiPT(06/02/2023)
         private void SetHeader()
         {
-            this.dgvResult.Columns[0].HeaderText = "San xuat " + '\n' + this.getInfo.wo1;
+            this.dgvResult.Columns[0].HeaderText = "Dang san xuat " + '\n' + this.getInfo.wo1;
             this.dgvResult.Columns[1].HeaderText = "Vi tri 1";
             this.dgvResult.Columns[2].HeaderText = "Ghi chu 1";
             this.dgvResult.Columns[3].HeaderText = "San xuat tiep theo " + '\n' + this.getInfo.wo2;
@@ -408,7 +408,7 @@ namespace SMT_Picklist_Compare
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// CreatedBy: HoaiPT(04/02/2023)
-        private void btnExportCSV_Click(object sender, EventArgs e)
+        private void btnExportCSV_V1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -473,6 +473,73 @@ namespace SMT_Picklist_Compare
                 this.actionButton(true);
             }
         }
+        private void btnExportCSV_V2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.actionButton(false);
+                this.updateLable("Thực hiện bắt đầu ghi dữ liệu");
+
+                if (listDataOut.Count == 0)//Kiem tra khi co du lieu thi moi duoc export
+                {
+                    MessageBox.Show("Không có dữ liệu để export!", "Error No data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
+
+
+                string pathFolder = Path.GetDirectoryName(this.valueInput.file_1) + @"\KET_QUA";
+                if (!Directory.Exists(pathFolder))
+                {
+                    Directory.CreateDirectory(pathFolder);
+                }
+
+                var allLines = (from item in listDataOut
+                                select new object[]
+                                {
+                                            item.col_1,
+                                            item.address_1,
+                                            item.comment_1,
+                                            item.col_2,
+                                            item.address_2,
+                                            item.comment_2,
+                                }).ToList();
+
+                var csv = new StringBuilder();
+                string tempAddString = "\"PICKLIST 1\"" + ",\"" + this.getInfo.wo1 + "\",\"" + this.getInfo.model1 + "\"";
+                csv.AppendLine(tempAddString);
+                tempAddString = "\"PICKLIST 2\"" + ",\"" + this.getInfo.wo2 + "\",\"" + this.getInfo.model2 + "\"";
+                csv.AppendLine(tempAddString);
+                csv.AppendLine();
+
+                string clientHeader = "\"" + this.getInfo.wo1 + "\"" + ",\"" + "Vi tri 1" + "\",\"" + "Ghi chu 1" + "\",\"" +
+                                       this.getInfo.wo2 + "\",\"" + "Vi tri 2" + "\",\"" + "Ghi chu 2" + "\"";
+                csv.AppendLine(clientHeader);
+                allLines.ForEach(line =>
+                {
+                    csv.AppendLine(string.Join(",", line));
+                });
+
+                string fileName = pathFolder + @"\" + this.getInfo.wo1 + "_" + this.getInfo.wo2 + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".csv";
+                File.WriteAllText(fileName, csv.ToString());
+
+                MessageBox.Show("Thực hiện export dữ liệu thành công file:" + fileName, "Successful Export Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                //Thuc hien lay du lieu
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra trong quá trình chạy chương trình liên hệ bộ phận IT để được hỗ trợ: " + ex.Message, "Error Program", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.actionButton(true);
+            }
+        }
+
 
         private void GetInfo()
         {
