@@ -518,11 +518,20 @@ namespace SMT_Picklist_Compare
                 string tempFile = this.getInfo.wo1 + "_" + this.getInfo.wo2 + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
                 string fileName = pathFolder + @"\" + tempFile + ".csv";
                 File.WriteAllText(fileName, csv.ToString());
-                
-               
+
                 string pathFolderOld = Path.GetDirectoryName(this.valueInput.file_1);
                 pathFolder = Path.GetDirectoryName(pathFolderOld);
-                System.IO.Directory.Move(pathFolderOld, pathFolder + @"\" + tempFile);
+
+                try
+                {
+                    System.IO.Directory.Move(pathFolderOld, pathFolder + @"\" + tempFile);
+                }
+                catch (Exception)
+                {
+                    System.Threading.Thread.Sleep(3000);
+                    System.IO.Directory.Move(pathFolderOld, pathFolder + @"\" + tempFile);
+                }
+              
                 fileName = pathFolder + @"\" + tempFile + @"\KET_QUA\" + tempFile + ".csv";
 
                 this.ChangeNameFile(pathFolderOld, pathFolder + @"\" + tempFile);
@@ -558,6 +567,13 @@ namespace SMT_Picklist_Compare
             this.txtFile2.Text = this.valueInput.file_2.Replace(valueOld, valueNew);
             this.txtFileETSD2.Text = this.valueInput.file_ETSD2.Replace(valueOld, valueNew);
             this.txtFileLinkData2.Text = this.valueInput.fileLinkData2.Replace(valueOld, valueNew);
+
+            this.valueInput.file_1 = this.valueInput.file_1.Replace(valueOld, valueNew);
+            this.valueInput.file_2 = this.valueInput.file_2.Replace(valueOld, valueNew);
+            this.valueInput.file_ETSD1 = this.valueInput.file_ETSD1.Replace(valueOld, valueNew);
+            this.valueInput.file_ETSD2 = this.valueInput.file_ETSD2.Replace(valueOld, valueNew);
+            this.valueInput.fileLinkData1 = this.valueInput.fileLinkData1.Replace(valueOld, valueNew);
+            this.valueInput.fileLinkData2 = this.valueInput.fileLinkData2.Replace(valueOld, valueNew);
         }
 
 

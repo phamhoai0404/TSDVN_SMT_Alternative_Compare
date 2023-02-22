@@ -102,16 +102,15 @@ namespace SMT_Picklist_Compare.Function
                             break;
                     }
                 }
-                if (listETSD.Count > 1)
-                {
-                    return string.Format(MdlCommon.ERROR_009, pathFolder);
-                }
                 //Truong hop loi ETSD
                 if (valueOut.file_ETSD1 == null)
                 {
                     return "Picklist WO 1: " + string.Format(MdlCommon.ERROR_007, pathFolder, wo1.modelName);
                 }
-                
+                if (listETSD.Count > 1)
+                {
+                    return string.Format(MdlCommon.ERROR_009, pathFolder);
+                }
 
                 if (valueOut.file_2 == null)
                 {

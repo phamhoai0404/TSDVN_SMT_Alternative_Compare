@@ -83,8 +83,6 @@ namespace SMT_Picklist_Compare.Function
                     valueInput.file_2.Equals(valueInput.fileLinkData2) ||
                     valueInput.file_ETSD1.Equals(valueInput.fileLinkData1) ||
                     valueInput.file_ETSD1.Equals(valueInput.fileLinkData2) ||
-                     valueInput.file_ETSD1.Equals(valueInput.file_ETSD2) ||
-                    valueInput.fileLinkData1.Equals(valueInput.fileLinkData2) ||
                     valueInput.fileLinkData1.Equals(valueInput.file_ETSD2) ||
                     valueInput.fileLinkData2.Equals(valueInput.file_ETSD2))
                 {
