@@ -19,3 +19,13 @@ C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT_Alternative_Compare\SMT_Alternative_C
 C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT_Alternative_Compare\SMT_Alternative_Compare_V3\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.csproj.CoreCompileInputs.cache
 C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT_Alternative_Compare\SMT_Alternative_Compare_V3\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.exe
 C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT_Alternative_Compare\SMT_Alternative_Compare_V3\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.pdb
+C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V4\SMT_Picklist_Compare\bin\Debug\SMT_Picklist_Compare.exe.config
+C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V4\SMT_Picklist_Compare\bin\Debug\SMT_Picklist_Compare.exe
+C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V4\SMT_Picklist_Compare\bin\Debug\SMT_Picklist_Compare.pdb
+C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V4\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.csprojAssemblyReference.cache
+C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V4\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.MainMain.resources
+C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V4\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.Properties.Resources.resources
+C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V4\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.csproj.GenerateResource.cache
+C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V4\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.csproj.CoreCompileInputs.cache
+C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V4\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.exe
+C:\Users\Sys009\Desktop\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V4\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.pdb

@@ -72,6 +72,7 @@ namespace SMT_Picklist_Compare
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.pnlMain.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -376,9 +377,9 @@ namespace SMT_Picklist_Compare
             this.pnlMain2.Controls.Add(this.label8);
             this.pnlMain2.Controls.Add(this.dgvResult);
             this.pnlMain2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlMain2.Location = new System.Drawing.Point(453, 113);
+            this.pnlMain2.Location = new System.Drawing.Point(481, 113);
             this.pnlMain2.Name = "pnlMain2";
-            this.pnlMain2.Size = new System.Drawing.Size(700, 619);
+            this.pnlMain2.Size = new System.Drawing.Size(735, 619);
             this.pnlMain2.TabIndex = 7;
             this.pnlMain2.TabStop = false;
             this.pnlMain2.Text = "Kết quả:";
@@ -386,12 +387,13 @@ namespace SMT_Picklist_Compare
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtSearch);
+            this.groupBox1.Controls.Add(this.btnPrint);
             this.groupBox1.Controls.Add(this.btnExportCSV);
             this.groupBox1.Controls.Add(this.btnSearchFresh);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Location = new System.Drawing.Point(336, 21);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(358, 66);
+            this.groupBox1.Size = new System.Drawing.Size(395, 66);
             this.groupBox1.TabIndex = 103;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tìm kiếm:";
@@ -497,7 +499,7 @@ namespace SMT_Picklist_Compare
             this.dgvResult.Location = new System.Drawing.Point(3, 120);
             this.dgvResult.Name = "dgvResult";
             this.dgvResult.ReadOnly = true;
-            this.dgvResult.Size = new System.Drawing.Size(694, 496);
+            this.dgvResult.Size = new System.Drawing.Size(729, 496);
             this.dgvResult.TabIndex = 0;
             // 
             // panel2
@@ -547,14 +549,29 @@ namespace SMT_Picklist_Compare
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1153, 113);
+            this.panel1.Size = new System.Drawing.Size(1216, 113);
             this.panel1.TabIndex = 3;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnPrint.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrint.BackgroundImage")));
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnPrint.ForeColor = System.Drawing.Color.Navy;
+            this.btnPrint.Location = new System.Drawing.Point(354, 26);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(35, 33);
+            this.btnPrint.TabIndex = 102;
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // MainMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1153, 732);
+            this.ClientSize = new System.Drawing.Size(1216, 732);
             this.Controls.Add(this.pnlMain2);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.panel1);
@@ -635,6 +652,7 @@ namespace SMT_Picklist_Compare
         private System.Windows.Forms.TextBox txtFileWOFirst;
         private System.Windows.Forms.Button btnLinkFile;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnPrint;
     }
 }
 

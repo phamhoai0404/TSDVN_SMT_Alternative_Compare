@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace SMT_Picklist_Compare
 {
@@ -479,62 +480,8 @@ namespace SMT_Picklist_Compare
                     MessageBox.Show("Không có dữ liệu để export!", "Error No data", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-
-                string pathFolder = Path.GetDirectoryName(this.valueInput.file_1) + @"\KET_QUA";
-                if (!Directory.Exists(pathFolder))
-                {
-                    Directory.CreateDirectory(pathFolder);
-                }
-
-                //pathFolder = Path.GetDirectoryName(Path.GetDirectoryName(this.valueInput.file_1));
-
-                var allLines = (from item in listDataOut
-                                select new object[]
-                                {
-                                            item.col_1,
-                                            item.address_1,
-                                            item.comment_1,
-                                            item.col_2,
-                                            item.address_2,
-                                            item.comment_2,
-                                }).ToList();
-
-                var csv = new StringBuilder();
-                string tempAddString = "\"PICKLIST 1\"" + ",\"" + this.getInfo.wo1 + "\",\"" + this.getInfo.model1 + "\"";
-                csv.AppendLine(tempAddString);
-                tempAddString = "\"PICKLIST 2\"" + ",\"" + this.getInfo.wo2 + "\",\"" + this.getInfo.model2 + "\"";
-                csv.AppendLine(tempAddString);
-                csv.AppendLine();
-
-                string clientHeader = "\"" + this.getInfo.wo1 + "\"" + ",\"" + "Vi tri 1" + "\",\"" + "Ghi chu 1" + "\",\"" +
-                                       this.getInfo.wo2 + "\",\"" + "Vi tri 2" + "\",\"" + "Ghi chu 2" + "\"";
-                csv.AppendLine(clientHeader);
-                allLines.ForEach(line =>
-                {
-                    csv.AppendLine(string.Join(",", line));
-                });
-
-                string tempFile = this.getInfo.wo1 + "_" + this.getInfo.wo2 + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                string fileName = pathFolder + @"\" + tempFile + ".csv";
-                File.WriteAllText(fileName, csv.ToString());
-
-                string pathFolderOld = Path.GetDirectoryName(this.valueInput.file_1);
-                pathFolder = Path.GetDirectoryName(pathFolderOld);
-
-                try
-                {
-                    System.IO.Directory.Move(pathFolderOld, pathFolder + @"\" + tempFile);
-                }
-                catch (Exception)
-                {
-                    System.Threading.Thread.Sleep(3000);
-                    System.IO.Directory.Move(pathFolderOld, pathFolder + @"\" + tempFile);
-                }
-              
-                fileName = pathFolder + @"\" + tempFile + @"\KET_QUA\" + tempFile + ".csv";
-
-                this.ChangeNameFile(pathFolderOld, pathFolder + @"\" + tempFile);
+                string fileName = "";
+                this.ActionCreateFile(ref fileName);
 
                 MessageBox.Show("Thực hiện export dữ liệu thành công file:" + fileName, "Successful Export Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -590,8 +537,6 @@ namespace SMT_Picklist_Compare
         {
             try
             {
-
-
                 this.actionButton(false);
                 this.updateLable("Thực hiện link file...");
                 //Thuc hien clear du lieu ban dau
@@ -643,6 +588,129 @@ namespace SMT_Picklist_Compare
             this.valueInput.file_ETSD2 = null;
         }
 
-       
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                this.actionButton(false);
+                this.updateLable("Thực hiện bắt đầu ghi dữ liệu");
+
+                if (listDataOut.Count == 0)//Kiem tra khi co du lieu thi moi duoc export
+                {
+                    MessageBox.Show("Không có dữ liệu để in!", "Error No data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                string fileName = "";
+                this.ActionCreateFile(ref fileName);
+
+                Excel.Application excelApp = new Excel.Application();
+                Excel.Workbook workbook = excelApp.Workbooks.Open(fileName);
+
+               
+                Excel.Worksheet worksheet = workbook.Sheets[1];
+                Excel.Range columnsToAutofit = worksheet.Range["A:F"];
+                columnsToAutofit.EntireColumn.AutoFit();
+
+                int rowData = this.listDataOut.Count();
+
+                Excel.Range range = worksheet.Range["A4:F" + (4 + rowData)];
+                Excel.Borders borders = range.Borders;
+                borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                borders.Weight = 1d;
+                borders.Color = Excel.XlRgbColor.rgbBlack;
+
+                worksheet.PageSetup.PrintArea = "A1:" +
+                worksheet.Cells[worksheet.UsedRange.Rows.Count, worksheet.UsedRange.Columns.Count].Address;
+                
+                worksheet.PageSetup.Orientation = Excel.XlPageOrientation.xlPortrait;
+                worksheet.PageSetup.FitToPagesWide = 1;
+                worksheet.PageSetup.FitToPagesTall = 1;
+
+                
+              
+                worksheet.PrintOut(Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+                    Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+               
+                workbook.Close(false, Type.Missing, Type.Missing);
+                excelApp.Quit();
+
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(range);
+               System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                this.actionButton(true);
+            }
+        }
+
+        private void ActionCreateFile(ref string fileName)
+        {
+            string pathFolder = Path.GetDirectoryName(this.valueInput.file_1) + @"\KET_QUA";
+            if (!Directory.Exists(pathFolder))
+            {
+                Directory.CreateDirectory(pathFolder);
+            }
+
+            //pathFolder = Path.GetDirectoryName(Path.GetDirectoryName(this.valueInput.file_1));
+
+            var allLines = (from item in listDataOut
+                            select new object[]
+                            {
+                                            item.col_1,
+                                            item.address_1,
+                                            item.comment_1,
+                                            item.col_2,
+                                            item.address_2,
+                                            item.comment_2,
+                            }).ToList();
+
+            var csv = new StringBuilder();
+            string tempAddString = "\"PICKLIST 1\"" + ",\"" + this.getInfo.wo1 + "\",\"" + this.getInfo.model1 + "\"";
+            csv.AppendLine(tempAddString);
+            tempAddString = "\"PICKLIST 2\"" + ",\"" + this.getInfo.wo2 + "\",\"" + this.getInfo.model2 + "\"";
+            csv.AppendLine(tempAddString);
+            csv.AppendLine();
+
+            string clientHeader = "\"" + this.getInfo.wo1 + "\"" + ",\"" + "Vi tri 1" + "\",\"" + "Ghi chu 1" + "\",\"" +
+                                   this.getInfo.wo2 + "\",\"" + "Vi tri 2" + "\",\"" + "Ghi chu 2" + "\"";
+            csv.AppendLine(clientHeader);
+            allLines.ForEach(line =>
+            {
+                csv.AppendLine(string.Join(",", line));
+            });
+
+            string tempFile = this.getInfo.wo1 + "_" + this.getInfo.wo2 + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            fileName = pathFolder + @"\" + tempFile + ".csv";
+            File.WriteAllText(fileName, csv.ToString());
+
+            string pathFolderOld = Path.GetDirectoryName(this.valueInput.file_1);
+            pathFolder = Path.GetDirectoryName(pathFolderOld);
+
+            try
+            {
+                System.IO.Directory.Move(pathFolderOld, pathFolder + @"\" + tempFile);
+            }
+            catch (Exception)
+            {
+                System.Threading.Thread.Sleep(3000);
+                System.IO.Directory.Move(pathFolderOld, pathFolder + @"\" + tempFile);
+            }
+
+            fileName = pathFolder + @"\" + tempFile + @"\KET_QUA\" + tempFile + ".csv";
+
+            this.ChangeNameFile(pathFolderOld, pathFolder + @"\" + tempFile);
+        }
     }
 }
