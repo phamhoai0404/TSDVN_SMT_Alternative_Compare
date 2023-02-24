@@ -747,16 +747,16 @@
   </data>
   <data name="btnPrint.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAHLSURBVGhD7Zq9LgRRHMWvV9BQqASJXiUStVqBTqtQqLyE
-        SATRKSQkeAGFRq+QKDQS8fUIKp/nt5mbXPFfizt3Zm7MSX7FnJ3sOSfZTXZ2xv0njYhZMZcYMsgqVevi
-        RbxXBFlklqIF8SasoJSQSXa0DoUVUAVHIlonwnrzKiA7Wu2ACNoBqB0QQTsAtQMiKGXAvnisiQPxf9Qn
-        JsWSWGkodKMjXT9pVJyLOn51/gW60rmjAfEgrBObDJ0HhdssjBzZEu4+MHKD7u41MJrAs9gTO+Kp8LpB
-        d/OFOtkQXsvCOifENOtkVXjxD4V1Tohp1gmf6xkxLS4K7ztMMydMMydMMydME47FcEOgi9URTBN2BRoT
-        EzVBNqKL1RFME/yAJlzQtAOs16ugHYDCAVynniWGDJ9X+oBtjMQiw+f9aEC3Oy/WgEtBQErI8Hm9BtDd
-        3QRGiDWganoNoLtbC4yQHAbQ3fWL68IIsQbcFccpuRU+j2NkDaAz3TsaEqci/FvFGsBnNLXI8HnWADrS
-        lc5fNC7mxaKYwpDCAVeCN0sJGT7PD6ALnehGx18pHFA1fkCUsr/NWteNbijlRjfK+lEDL/+wB1+klCR5
-        2KOhcu4D9FcEXY3Y4I4AAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        xAAADsQBlSsOGwAAActJREFUaEPtmr0uBFEcxa9X0FCoBIleJRK1WoFOq1CovIRIBNEpJCR4AYVGr5Ao
+        NBLx9Qgqn+e3mZtc8V+LO3dmbsxJfsWcnew5J9lNdnbG/SeNiFkxlxgyyCpV6+JFvFcEWWSWogXxJqyg
+        lJBJdrQOhRVQBUciWifCevMqIDta7YAI2gGoHRBBOwC1AyIoZcC+eKyJA/F/1CcmxZJYaSh0oyNdP2lU
+        nIs6fnX+BbrSuaMB8SCsE5sMnQeF2yyMHNkS7j4wcoPu7jUwmsCz2BM74qnwukF384U62RBey8I6J8Q0
+        62RVePEPhXVOiGnWCZ/rGTEtLgrvO0wzJ0wzJ0wzJ0wTjsVwQ6CL1RFME3YFGhMTNUE2oovVEUwT/IAm
+        XNC0A6zXq6AdgMIBXKeeJYYMn1f6gG2MxCLD5/1oQLc7L9aAS0FASsjweb0G0N3dBEaINaBqeg2gu1sL
+        jJAcBtDd9YvrwgixBtwVxym5FT6PY2QNoDPdOxoSpyL8W8UawGc0tcjwedYAOtKVzl80LubFopjCkMIB
+        V4I3SwkZPs8PoAud6EbHXykcUDV+QJSyv81a141uKOVGN8r6UQMv/7AHX6SUJHnYo6Fy7gP0VwRdjdjg
+        jgAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="btnExportCSV.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

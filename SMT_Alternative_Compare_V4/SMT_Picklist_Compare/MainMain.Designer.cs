@@ -59,6 +59,7 @@ namespace SMT_Picklist_Compare
             this.pnlMain2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.btnExportCSV = new System.Windows.Forms.Button();
             this.btnSearchFresh = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -72,7 +73,6 @@ namespace SMT_Picklist_Compare
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.pnlMain.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -282,9 +282,11 @@ namespace SMT_Picklist_Compare
             // 
             // txtFileWOFirst
             // 
+            this.txtFileWOFirst.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtFileWOFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFileWOFirst.Location = new System.Drawing.Point(19, 27);
             this.txtFileWOFirst.Name = "txtFileWOFirst";
+            this.txtFileWOFirst.ReadOnly = true;
             this.txtFileWOFirst.Size = new System.Drawing.Size(313, 30);
             this.txtFileWOFirst.TabIndex = 0;
             // 
@@ -406,6 +408,21 @@ namespace SMT_Picklist_Compare
             this.txtSearch.Size = new System.Drawing.Size(194, 26);
             this.txtSearch.TabIndex = 102;
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnPrint.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrint.BackgroundImage")));
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnPrint.ForeColor = System.Drawing.Color.Navy;
+            this.btnPrint.Location = new System.Drawing.Point(352, 27);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(35, 33);
+            this.btnPrint.TabIndex = 102;
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnExportCSV
             // 
@@ -551,21 +568,6 @@ namespace SMT_Picklist_Compare
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1182, 113);
             this.panel1.TabIndex = 3;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnPrint.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrint.BackgroundImage")));
-            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnPrint.ForeColor = System.Drawing.Color.Navy;
-            this.btnPrint.Location = new System.Drawing.Point(352, 27);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(35, 33);
-            this.btnPrint.TabIndex = 102;
-            this.btnPrint.UseVisualStyleBackColor = false;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // MainMain
             // 

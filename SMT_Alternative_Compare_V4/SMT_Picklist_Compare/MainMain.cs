@@ -616,7 +616,6 @@ namespace SMT_Picklist_Compare
                 Excel.Borders borders = range.Borders;
                 borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                 borders.Weight = 2d;
-                //borders.Color = Excel.XlRgbColor.rgbBlack;
 
                 worksheet.PageSetup.PrintArea = "A1:" +
                 worksheet.Cells[worksheet.UsedRange.Rows.Count, worksheet.UsedRange.Columns.Count].Address;
@@ -642,10 +641,9 @@ namespace SMT_Picklist_Compare
                 MessageBox.Show("Thực hiện tạo lệnh in và tạo file thành công :" + fileName, "Successful Print Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show("Đã có lỗi xảy ra trong quá trình chạy chương trình liên hệ bộ phận IT để được hỗ trợ: " + ex.Message, "Error Program", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
