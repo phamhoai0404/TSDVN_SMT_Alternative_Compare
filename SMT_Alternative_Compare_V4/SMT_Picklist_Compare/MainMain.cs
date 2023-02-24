@@ -279,7 +279,6 @@ namespace SMT_Picklist_Compare
         {
             this.actionButton(true);
             this.ActiveControl = this.txtFileWOFirst;
-            //this.txtFileWOFirst.Text = @"P:\96. Share Data\99. Other\13. IT\HOAI\SMT-Compare_A\TEST\XRHP06733.csv";
         }
         #region Action Style
         /// <summary>
@@ -592,8 +591,6 @@ namespace SMT_Picklist_Compare
         {
             try
             {
-
-
                 this.actionButton(false);
                 this.updateLable("Thực hiện bắt đầu ghi dữ liệu");
 
@@ -608,7 +605,7 @@ namespace SMT_Picklist_Compare
                 Excel.Application excelApp = new Excel.Application();
                 Excel.Workbook workbook = excelApp.Workbooks.Open(fileName);
 
-               
+
                 Excel.Worksheet worksheet = workbook.Sheets[1];
                 Excel.Range columnsToAutofit = worksheet.Range["A:F"];
                 columnsToAutofit.EntireColumn.AutoFit();
@@ -618,30 +615,31 @@ namespace SMT_Picklist_Compare
                 Excel.Range range = worksheet.Range["A4:F" + (4 + rowData)];
                 Excel.Borders borders = range.Borders;
                 borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                borders.Weight = 1d;
-                borders.Color = Excel.XlRgbColor.rgbBlack;
+                borders.Weight = 2d;
+                //borders.Color = Excel.XlRgbColor.rgbBlack;
 
                 worksheet.PageSetup.PrintArea = "A1:" +
                 worksheet.Cells[worksheet.UsedRange.Rows.Count, worksheet.UsedRange.Columns.Count].Address;
-                
+
                 worksheet.PageSetup.Orientation = Excel.XlPageOrientation.xlPortrait;
                 worksheet.PageSetup.FitToPagesWide = 1;
                 worksheet.PageSetup.FitToPagesTall = 1;
 
-                
-              
+
+
                 worksheet.PrintOut(Type.Missing, Type.Missing, Type.Missing, Type.Missing,
                     Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
-               
+
                 workbook.Close(false, Type.Missing, Type.Missing);
                 excelApp.Quit();
 
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(range);
-               System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(worksheet);
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
 
+                MessageBox.Show("Thực hiện tạo lệnh in và tạo file thành công :" + fileName, "Successful Print Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception)
@@ -698,19 +696,17 @@ namespace SMT_Picklist_Compare
             string pathFolderOld = Path.GetDirectoryName(this.valueInput.file_1);
             pathFolder = Path.GetDirectoryName(pathFolderOld);
 
+
             try
             {
                 System.IO.Directory.Move(pathFolderOld, pathFolder + @"\" + tempFile);
+                fileName = pathFolder + @"\" + tempFile + @"\KET_QUA\" + tempFile + ".csv";
+                this.ChangeNameFile(pathFolderOld, pathFolder + @"\" + tempFile);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                System.Threading.Thread.Sleep(3000);
-                System.IO.Directory.Move(pathFolderOld, pathFolder + @"\" + tempFile);
+                MessageBox.Show("Folder đang mở bởi hoạt động khác => Không đổi được tên thư mục! " + ex.Message, "Successful Export Data", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            fileName = pathFolder + @"\" + tempFile + @"\KET_QUA\" + tempFile + ".csv";
-
-            this.ChangeNameFile(pathFolderOld, pathFolder + @"\" + tempFile);
         }
     }
 }

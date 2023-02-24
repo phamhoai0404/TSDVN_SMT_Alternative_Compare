@@ -377,9 +377,9 @@ namespace SMT_Picklist_Compare
             this.pnlMain2.Controls.Add(this.label8);
             this.pnlMain2.Controls.Add(this.dgvResult);
             this.pnlMain2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlMain2.Location = new System.Drawing.Point(481, 113);
+            this.pnlMain2.Location = new System.Drawing.Point(450, 113);
             this.pnlMain2.Name = "pnlMain2";
-            this.pnlMain2.Size = new System.Drawing.Size(735, 619);
+            this.pnlMain2.Size = new System.Drawing.Size(732, 619);
             this.pnlMain2.TabIndex = 7;
             this.pnlMain2.TabStop = false;
             this.pnlMain2.Text = "Kết quả:";
@@ -499,7 +499,7 @@ namespace SMT_Picklist_Compare
             this.dgvResult.Location = new System.Drawing.Point(3, 120);
             this.dgvResult.Name = "dgvResult";
             this.dgvResult.ReadOnly = true;
-            this.dgvResult.Size = new System.Drawing.Size(729, 496);
+            this.dgvResult.Size = new System.Drawing.Size(726, 496);
             this.dgvResult.TabIndex = 0;
             // 
             // panel2
@@ -549,7 +549,7 @@ namespace SMT_Picklist_Compare
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1216, 113);
+            this.panel1.Size = new System.Drawing.Size(1182, 113);
             this.panel1.TabIndex = 3;
             // 
             // btnPrint
@@ -560,7 +560,7 @@ namespace SMT_Picklist_Compare
             this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btnPrint.ForeColor = System.Drawing.Color.Navy;
-            this.btnPrint.Location = new System.Drawing.Point(354, 26);
+            this.btnPrint.Location = new System.Drawing.Point(352, 27);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(35, 33);
             this.btnPrint.TabIndex = 102;
@@ -571,7 +571,7 @@ namespace SMT_Picklist_Compare
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 732);
+            this.ClientSize = new System.Drawing.Size(1182, 732);
             this.Controls.Add(this.pnlMain2);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.panel1);
