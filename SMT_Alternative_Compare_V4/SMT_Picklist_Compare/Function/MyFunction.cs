@@ -617,13 +617,20 @@ namespace SMT_Picklist_Compare.Function
                 var tempObject = listComment1.Where(x => x.item.Equals(item.col_1)).ToList();
                 if (tempObject != null)
                 {
-                    item.comment_1 = tempObject[0].comment;
+                    if (tempObject.Count > 0)
+                    {
+                        item.comment_1 = tempObject[0].comment;
+                    }
                 }
-                tempObject = null;
+               
                 tempObject = listComment2.Where(x => x.item.Equals(item.col_2)).ToList();
                 if (tempObject != null)
                 {
-                    item.comment_2 = tempObject[0].comment;
+                    if(tempObject.Count > 0)
+                    {
+                        item.comment_2 = tempObject[0].comment;
+                    }
+                    
                 }
             }
 

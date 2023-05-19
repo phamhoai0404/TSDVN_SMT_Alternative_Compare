@@ -182,12 +182,12 @@ namespace SMT_Picklist_Compare
 
         #region Action Select file
 
-        /// <summary>
-        /// Thuc hien hanh dong khi click vao file
-        /// </summary>
-        /// <param name="typeClick">Loai hanh dong khi click vao</param>
-        /// CreatedBy: HoaiPT(02/02/2023)
-        private void ClickSelectFile(string typeClick)
+            /// <summary>
+            /// Thuc hien hanh dong khi click vao file
+            /// </summary>
+            /// <param name="typeClick">Loai hanh dong khi click vao</param>
+            /// CreatedBy: HoaiPT(02/02/2023)
+            private void ClickSelectFile(string typeClick)
         {
             string tempResult = Function.MyFunction.SelectFile();
             switch (tempResult)
@@ -337,11 +337,11 @@ namespace SMT_Picklist_Compare
             this.dgvResult.Columns[6].HeaderText = "Item Main";
 
             this.dgvResult.Columns[0].Width = 150;
-            this.dgvResult.Columns[1].Width = 60;
-            this.dgvResult.Columns[2].Width = 30;
+            this.dgvResult.Columns[1].Width = 65;
+            this.dgvResult.Columns[2].Width = 45;
             this.dgvResult.Columns[3].Width = 150;
-            this.dgvResult.Columns[4].Width = 60;
-            this.dgvResult.Columns[5].Width = 30;
+            this.dgvResult.Columns[4].Width = 65;
+            this.dgvResult.Columns[5].Width = 45;
             this.dgvResult.Columns[6].Width = 160;
 
         }
