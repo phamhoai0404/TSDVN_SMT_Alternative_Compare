@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace SMT_Picklist_Compare.Model
 {
+    public class MdlCommn
+    {
+        public const string CHECKY = "(@Y)";
+    }
     public class ResultSelectFile
     {
         public const string NOT_SELECT_FILE = null;
@@ -57,41 +61,14 @@ namespace SMT_Picklist_Compare.Model
         //Loi khong phai file csv
         public const string ERROR_NOT_CSV = "ERROR_NOT_CSV";
 
-
-
         //OK
         public const string OK = "OK";
     }
    
-
-
-    public class ResultCompareTwoFile
-    {
-        public const string OK = "OK";
-        public const string INFOR_EMPTY = "INFOR_EMPTY";
-    }
-
-    public class ResultCompareETSD
-    {
-        public const string OK = "OK";
-        public const string INFOR_EMPTY = "INFOR_EMPTY";
-    }
-    public class ResultActionFineRemove
-    {
-        public const string OK = "OK";
-        public const string INFOR_EMPTY = "INFOR_EMPTY";
-    }
-
     public class ConstDataLink
     {
         public const int INDEX_GET_ADDRESS = 0;
         public const int INDEX_GET_ITEM = 1;
-    }
-    public class ResultAddAddress
-    {
-        public const string  ERROR_GET_LINK_1 = "ERROR_GET_LINK_1";
-        public const string ERROR_GET_LINK_2 = "ERROR_GET_LINK_2";
-        public const string OK = "OK";
     }
     public class MdlCommon
     {

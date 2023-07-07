@@ -31,7 +31,6 @@ namespace SMT_Picklist_Compare
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMain));
             this.pnlMain = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtFileETSD2 = new System.Windows.Forms.TextBox();
@@ -57,6 +56,7 @@ namespace SMT_Picklist_Compare
             this.picDone = new System.Windows.Forms.PictureBox();
             this.btnAction = new System.Windows.Forms.Button();
             this.btnClearAll = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.pnlMain2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -92,7 +92,6 @@ namespace SMT_Picklist_Compare
             // 
             // pnlMain
             // 
-            this.pnlMain.Controls.Add(this.label11);
             this.pnlMain.Controls.Add(this.groupBox3);
             this.pnlMain.Controls.Add(this.groupBox2);
             this.pnlMain.Controls.Add(this.panel7);
@@ -105,15 +104,6 @@ namespace SMT_Picklist_Compare
             this.pnlMain.TabIndex = 0;
             this.pnlMain.TabStop = false;
             this.pnlMain.Text = "*:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(268, 613);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(162, 16);
-            this.label11.TabIndex = 16;
-            this.label11.Text = "Version: 05/07/2023 18h54";
             // 
             // groupBox3
             // 
@@ -381,6 +371,16 @@ namespace SMT_Picklist_Compare
             this.btnClearAll.UseVisualStyleBackColor = false;
             this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
             // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(466, 82);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(176, 16);
+            this.label11.TabIndex = 16;
+            this.label11.Text = "Version10: 07/07/2023 16h35";
+            // 
             // pnlMain2
             // 
             this.pnlMain2.Controls.Add(this.groupBox1);
@@ -576,6 +576,7 @@ namespace SMT_Picklist_Compare
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -600,7 +601,6 @@ namespace SMT_Picklist_Compare
             this.Text = "SMT Picklist Compare";
             this.Load += new System.EventHandler(this.MainMain_Load);
             this.pnlMain.ResumeLayout(false);
-            this.pnlMain.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

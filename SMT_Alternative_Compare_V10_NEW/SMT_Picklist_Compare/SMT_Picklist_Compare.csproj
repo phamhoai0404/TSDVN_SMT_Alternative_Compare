@@ -51,6 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Function\ActionFeeder.cs" />
+    <Compile Include="Function\ActionLKTT.cs" />
+    <Compile Include="Function\ActionMain.cs" />
+    <Compile Include="Function\ActionPicklist.cs" />
+    <Compile Include="Function\ActionStyle.cs" />
     <Compile Include="Function\MyFunction.cs" />
     <Compile Include="Function\MyFunction2.cs" />
     <Compile Include="MainMain.cs">
@@ -61,7 +66,10 @@
     </Compile>
     <Compile Include="Model\DataOut.cs" />
     <Compile Include="Model\Enum.cs" />
+    <Compile Include="Model\Feeder.cs" />
     <Compile Include="Model\Input.cs" />
+    <Compile Include="Model\LKTT_ETSD.cs" />
+    <Compile Include="Model\Picklist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainMain.resx">

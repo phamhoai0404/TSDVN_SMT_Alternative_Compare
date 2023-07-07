@@ -16,6 +16,10 @@ namespace SMT_Picklist_Compare.Model
         public string comment_2 { get; set; }
         public string tempMain { get; set; }
 
+        public DataOut()
+        {
+
+        }
         
 
         public DataOut(string value1, string value2, string tempMain = null)
@@ -45,6 +49,16 @@ namespace SMT_Picklist_Compare.Model
             }
             
         }
+        public DataOut(DataOut s)
+        {
+            this.col_1 = s.col_1;
+            this.col_2 = s.col_2;
+            this.comment_1 = s.comment_1;
+            this.comment_2 = s.comment_2;
+            this.address_1 = s.address_1;
+            this.address_2 = s.address_2;
+        }
+       
         
 
 

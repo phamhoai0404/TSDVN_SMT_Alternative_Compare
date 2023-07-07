@@ -206,7 +206,6 @@ namespace SMT_Picklist_Compare.Function
                 return string.Format(MdlCommon.ERROR_015_CATCH, "FilePicklistWO1", ex.Message);
             }
         }
-
         public static string FileGet(string pathFile, ref GetFile valueOut)
         {
             try

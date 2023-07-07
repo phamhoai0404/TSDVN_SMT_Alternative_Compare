@@ -65,6 +65,7 @@ namespace SMT_Picklist_Compare
             this.txtSearch.Clear();
             this.txtFileETSD2.Clear();
         }
+      
         private void btnAction_Click(object sender, EventArgs e)
         {
             try
@@ -77,115 +78,55 @@ namespace SMT_Picklist_Compare
                 {
                     return;
                 }
+
                 this.updateLable("Thực hiện xóa dữ liệu cũ");
                 this.listDataOut.Clear();
                 this.ClearDataResult();
 
                 this.updateLable("Lấy dữ liệu 2 file Picklist");
-                //Thuc hien lay du lieu 2 file ban dau
-                string nameWO1 = Model.ConstSelectFile.TYPE_GET_NAME_WO;//Bien luu tru ten WO1
-                string nameWO2 = Model.ConstSelectFile.TYPE_GET_NAME_WO;//Bien luu tru ten WO2
-                List<string> listFile1 = Function.MyFunction.GetDataItemFile(this.valueInput.file_1, Model.ConstSelectFile.INDEX_GET_FILE_12, ref nameWO1);
-                List<string> listFile2 = Function.MyFunction.GetDataItemFile(this.valueInput.file_2, Model.ConstSelectFile.INDEX_GET_FILE_12, ref nameWO2);
-                this.lblWO1.Text = nameWO1;
-                this.lblWO2.Text = nameWO2;
 
-                listFile1 = listFile1.Distinct().ToList();//Xoa bo di gia tri trung lap
-                listFile2 = listFile2.Distinct().ToList();//Xoa bo di gia tri trung lap
+                //Thuc hien lay du lieu cua PickList
+                List<Picklist> picklist_1 = new List<Picklist>();
+                List<Picklist> picklist_2 = new List<Picklist>();
+                Function.ActionPicklist.GetDataCSV(this.valueInput.file_1, ref picklist_1, ref this.lblWO1);
+                Function.ActionPicklist.GetDataCSV(this.valueInput.file_2, ref picklist_2, ref this.lblWO2);
 
-                List<string> listFile_ETSD_E = new List<string>();
-                List<string> listFile_ETSD_L = new List<string>();
-
-                Function.MyFunction.GetELFileETSD(ref listFile_ETSD_E, ref listFile_ETSD_L, this.valueInput);
+                //Thuc hien lay du lieu cua LKTT
+                List<LKTT_ETSD> listLKTT_1 = new List<LKTT_ETSD>();
+                List<LKTT_ETSD> listLKTT_2 = new List<LKTT_ETSD>();
+                Function.ActionLKTT.GetDataCSV(this.valueInput.file_ETSD1, ref listLKTT_1);
+                Function.ActionLKTT.GetDataCSV(this.valueInput.file_ETSD2, ref listLKTT_2);
+                List<LKTT_ETSD> listLKTT_ALL = new List<LKTT_ETSD>();
+                listLKTT_ALL = listLKTT_1.Concat(listLKTT_2).ToList();
+                Function.ActionLKTT.RemoveDupplicate(ref listLKTT_ALL);
 
                 this.updateLable("Thực hiện xóa cặp item giống nhau trong 2 file");// giá trị giống nhau nhưng không tồn tại 
-                string resultCompare = Function.MyFunction.CompareTwoFile(ref listFile1, ref listFile2, listFile_ETSD_E, listFile_ETSD_L);
-                switch (resultCompare)
+                List<Picklist> pickList1_After = new List<Picklist>();//Du lieu dung de luu tru khi xoa giong nhau
+                List<Picklist> pickList2_After = new List<Picklist>();
+                Function.ActionPicklist.CompareTwoFile(picklist_1, picklist_2, listLKTT_ALL, ref pickList1_After, ref pickList2_After);
+
+                this.updateLable("Thực hiện so sánh ");
+                Function.ActionMain.ActionCompareETSD(pickList1_After, picklist_2, listLKTT_ALL, ref this.listDataOut);
+
+                this.updateLable("Thực hiện add comment");
+                Function.ActionPicklist.AddComment(ref this.listDataOut, picklist_1, picklist_2, listLKTT_1, listLKTT_2);
+                
+                if(this.listDataOut.Count == 0)
                 {
-                    case Model.ResultCompareTwoFile.OK:
-                        break;
-                    case Model.ResultCompareTwoFile.INFOR_EMPTY:
-                        break;
-                    default:
-                        MessageBox.Show("Đã có lỗi xảy ra trong quá trình so sánh hai file 1 và 2: " + resultCompare, "Error Compare Two File", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                }
-                if (resultCompare.Equals(Model.ResultCompareTwoFile.OK))
-                {
-                    this.updateLable("Thực hiện so sánh 2 file với file ETSD");
-                    resultCompare = Function.MyFunction.ActionCompareETSD(listFile1, listFile2, listFile_ETSD_E, listFile_ETSD_L, ref listDataOut);
-                    switch (resultCompare)
-                    {
-                        case Model.ResultCompareETSD.OK:
-                            break;
-                        case Model.ResultCompareETSD.INFOR_EMPTY:
-                            break;
-                        default:
-                            MessageBox.Show("Đã xảy ra lỗi trong quá trình so sánh 2 file với file ETSD: " + resultCompare, "Error Compare ETSD", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                    }
-                    if (resultCompare.Equals(ResultCompareETSD.OK))
-                    {
-                        this.updateLable("Thực hiện thêm địa chỉ cho từng item");
-                        string resultAddAddress = Function.MyFunction.Add_Address(ref listDataOut, this.valueInput.fileLinkData1, this.valueInput.fileLinkData2, listFile_ETSD_E, listFile_ETSD_L);
-                        switch (resultAddAddress)
-                        {
-                            case Model.ResultAddAddress.OK:
-                                break;
-                            case Model.ResultAddAddress.ERROR_GET_LINK_1:
-                                MessageBox.Show("Lỗi xảy ra trong quá trình lấy file link data 1: file không tồn tại hoặc không có dữ liệu trong file hoặc có lỗi trong quá trình đọc file ", "Error Get File Link Data 1", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            case Model.ResultAddAddress.ERROR_GET_LINK_2:
-                                MessageBox.Show("Lỗi xảy ra trong quá trình lấy file link data 2: file không tồn tại hoặc không có dữ liệu trong file hoặc có lỗi trong quá trình đọc file ", "Error Get File Link Data 2", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            default:
-                                MessageBox.Show("Có lỗi xảy ra trong quá trình link với file address", "Error Add Address", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                        }
-
-                        this.updateLable("Xóa bỏ đi giá trị không phù hợp");
-                        resultAddAddress = Function.MyFunction.ActionFineRemove(ref listDataOut);
-                        switch (resultAddAddress)
-                        {
-                            case Model.ResultActionFineRemove.OK:
-                                break;
-                            case Model.ResultActionFineRemove.INFOR_EMPTY:
-                                break;
-                            default:
-                                MessageBox.Show("Đã xảy ra lỗi trong quá trình thực hiện hành động: " + resultAddAddress, "Error Final Remove", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                        }
-
-                        if (resultAddAddress.Equals(Model.ResultActionFineRemove.OK))
-                        {
-                            this.updateLable("Lấy dữ liệu comment");
-                            //Add Comment
-                            Function.MyFunction.AddComment(ref this.listDataOut, this.valueInput);
-                            Function.MyFunction.MainRomveDupplicate(ref this.listDataOut);
-                        }
-                    }
-
-                }
-
-                //Thuc hien add comment neu co
-                Function.MyFunction.AddCommentOther(ref this.listDataOut, this.valueInput);
-                if (listDataOut.Count == 0)
-                {
-                    MessageBox.Show("Không cặp linh kiện thay thế nào thỏa mãn!", "Info Remove Final", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Không có cặp link kiện thay thế!","Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
-                //Thuc hien lay  item tick Y
-                List<string> listCheckY = new List<string>();
-                Function.MyFunction.GetListY(ref listCheckY, valueInput);
-                Function.MyFunction.AddCommentY(ref this.listDataOut, listCheckY);
-                
+                List<Feeder> listFeeder_1 = new List<Feeder>();
+                List<Feeder> listFeeder_2 = new List<Feeder>();
+                Function.ActionFeeder.GetDataCSV(this.valueInput.fileLinkData1, ref listFeeder_1);
+                Function.ActionFeeder.GetDataCSV(this.valueInput.fileLinkData2, ref listFeeder_2);
+
+                Function.ActionFeeder.AddAddress(ref this.listDataOut, listFeeder_1, listFeeder_2, listLKTT_ALL);
+
                 this.GetInfo();//Thuc hien lay ten
-
                 this.dgvResult.DataSource = listDataOut;
-                this.SetHeader();//Thiet lap Header cho dgv
-                this.SetColorY();//Thiet lap to mau Item co tich Y
-
+                this.SetStyleDgv();//Thiet lap css cho dgv
             }
             catch (Exception ex)
             {
@@ -199,57 +140,8 @@ namespace SMT_Picklist_Compare
 
         }
 
-        private void SetColorY()
-        {
-            int rowDgv = this.dgvResult.Rows.Count;
-            for (int i = 0; i < rowDgv; i++)
-            {
-                if (this.dgvResult.Rows[i].Cells[2].Value != null)
-                {
-                    if (this.dgvResult.Rows[i].Cells[2].Value.ToString().Contains("(@Y)"))
-                    {
-                        this.dgvResult.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                        continue;
-                    }
-                }
-                if (this.dgvResult.Rows[i].Cells[5].Value != null)
-                {
-                    if (this.dgvResult.Rows[i].Cells[5].Value.ToString().Contains("(@Y)"))
-                    {
-                        this.dgvResult.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                        continue;
-                    }
-                }
-            }
-        }
-        private void CheckYInFileExcel(ref Excel.Worksheet ws)
-        {
-            int indexCurrent = 5;
-            foreach (var item in this.listDataOut)
-            {
-                if(item.comment_1 != null)
-                {
-                    if (item.comment_1.Contains("(@Y"))
-                    {
-                        ws.Range[$"A{indexCurrent}:F{indexCurrent}"].Font.Strikethrough = true;
-                        indexCurrent++;
-                        continue;
-                    }
-                }
-
-                if (item.comment_2 != null)
-                {
-                    if (item.comment_2.Contains("(@Y"))
-                    {
-                        ws.Range[$"A{indexCurrent}:F{indexCurrent}"].Font.Strikethrough = true;
-                        indexCurrent++;
-                        continue;
-                    }
-                }
-                indexCurrent++;
-            }
-        }
-
+        
+       
 
 
 
@@ -391,33 +283,18 @@ namespace SMT_Picklist_Compare
             this.lblDisplay.Text = nameText;
             this.lblDisplay.Update();
         }
-
-
-        #endregion
-
-        /// <summary>
-        /// Thuc hien thiet lap header cho dgv
-        /// </summary>
-        /// CreatedBy: HoaiPT(06/02/2023)
-        private void SetHeader()
+        private void SetStyleDgv()
         {
-            this.dgvResult.Columns[0].HeaderText = "Dang san xuat " + '\n' + this.getInfo.wo1;
-            this.dgvResult.Columns[1].HeaderText = "Vi tri 1";
-            this.dgvResult.Columns[2].HeaderText = "Ghi chu 1";
-            this.dgvResult.Columns[3].HeaderText = "San xuat tiep theo " + '\n' + this.getInfo.wo2;
-            this.dgvResult.Columns[4].HeaderText = "Vi tri 2";
-            this.dgvResult.Columns[5].HeaderText = "Ghi chu 2";
-            this.dgvResult.Columns[6].HeaderText = "Item Main";
+            //Thuc hien set du lieu cua Header
+            Function.ActionStyle.SetHeader(ref this.dgvResult, this.getInfo.wo1, this.getInfo.wo2);
 
-            this.dgvResult.Columns[0].Width = 150;
-            this.dgvResult.Columns[1].Width = 65;
-            this.dgvResult.Columns[2].Width = 45;
-            this.dgvResult.Columns[3].Width = 150;
-            this.dgvResult.Columns[4].Width = 65;
-            this.dgvResult.Columns[5].Width = 45;
-            this.dgvResult.Columns[6].Width = 160;
+            //Thuc hien style cho item chua Y
+            Function.ActionStyle.SetCheckY(ref this.dgvResult);//Thiet lap to mau Item co tich Y
 
         }
+        #endregion
+
+
 
         #region Action Child Right
         /// <summary>
@@ -436,7 +313,7 @@ namespace SMT_Picklist_Compare
                                                             (x.comment_1?.Contains(tempValue) ?? false) || (x.comment_2?.Contains(tempValue) ?? false)).ToList();
                 this.dgvResult.DataSource = listTemp;
 
-                this.SetColorY();//Set neu du lieu co check Y
+                this.SetStyleDgv();//Thuc hien thiet lap cua dgv
             }
 
 
@@ -450,15 +327,12 @@ namespace SMT_Picklist_Compare
         /// CreatedBy: HoaiPT(04/02/2023)
         private void btnSearchFresh_Click(object sender, EventArgs e)
         {
-
             if (this.listDataOut.Count > 0)
             {
                 this.txtSearch.Text = "";
                 this.dgvResult.DataSource = this.listDataOut;
-                this.SetHeader();
-                this.SetColorY();//Set mau neu check Y
+                this.SetStyleDgv();//Thuc hien style css
             }
-
         }
 
         /// <summary>
@@ -573,7 +447,7 @@ namespace SMT_Picklist_Compare
             }
         }
 
-
+     
         private void GetInfo()
         {
             this.getInfo.wo1 = this.lblWO1.Text.Substring(0, this.lblWO1.Text.IndexOf(":") - 1);
@@ -599,11 +473,9 @@ namespace SMT_Picklist_Compare
             this.valueInput.fileLinkData1 = this.valueInput.fileLinkData1.Replace(valueOld, valueNew);
             this.valueInput.fileLinkData2 = this.valueInput.fileLinkData2.Replace(valueOld, valueNew);
         }
-
-
-
         #endregion
 
+        #region Link File
         /// <summary>
         /// Hanh dong moi
         /// </summary>
@@ -664,7 +536,9 @@ namespace SMT_Picklist_Compare
             this.valueInput.file_ETSD1 = null;
             this.valueInput.file_ETSD2 = null;
         }
+        #endregion
 
+        #region Function Other
         private void btnPrint_Click(object sender, EventArgs e)
         {
             try
@@ -695,7 +569,7 @@ namespace SMT_Picklist_Compare
                 borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                 borders.Weight = 2d;
 
-                this.CheckYInFileExcel(ref worksheet);
+                Function.ActionStyle.CheckYInFileExcel(ref worksheet, this.listDataOut);
 
                 worksheet.PageSetup.PrintArea = "A1:" +
                 worksheet.Cells[worksheet.UsedRange.Rows.Count, worksheet.UsedRange.Columns.Count].Address;
@@ -796,5 +670,7 @@ namespace SMT_Picklist_Compare
                 MessageBox.Show("Folder đang mở bởi hoạt động khác => Không đổi được tên thư mục! " + ex.Message, "Successful Export Data", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
+
     }
 }
