@@ -312,7 +312,7 @@ namespace SMT_Picklist_Compare
                 string tempValue = this.txtSearch.Text.Trim();
                 var listTemp = this.listDataOut.Where(x => (x.col_2?.Contains(tempValue) ?? false) || (x.col_1?.Contains(tempValue) ?? false) ||
                                                             (x.address_1?.Contains(tempValue) ?? false) || (x.address_2?.Contains(tempValue) ?? false) ||
-                                                            (x.comment_1?.Contains(tempValue) ?? false) || (x.comment_2?.Contains(tempValue) ?? false)).ToList();
+                                                            (x.comment_1?.Contains(tempValue) ?? false) || (x.comment_2?.Contains(tempValue) ?? false) || (x.tempMain?.Contains(tempValue) ?? false)).ToList();
                 this.dgvResult.DataSource = listTemp;
 
                 this.SetStyleDgv();//Thuc hien thiet lap cua dgv

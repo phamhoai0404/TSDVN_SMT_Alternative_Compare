@@ -113,9 +113,104 @@ namespace SMT_Picklist_Compare.Function
             }
         }
 
+        /// <summary>
+        /// Thuc hien add them comment của chuong trinh
+        /// </summary>
+        /// <param name="listDataOut"></param>
+        /// <param name="picklist_1"></param>
+        /// <param name="picklist_2"></param>
+        /// <param name="listLKTT_1"></param>
+        /// <param name="listLKTT_2"></param>
         public static void AddComment(ref List<DataOut> listDataOut, 
                                         List<Picklist> picklist_1, List<Picklist> picklist_2, 
                                         List<LKTT_ETSD> listLKTT_1, List<LKTT_ETSD> listLKTT_2)
+        {
+            //Add comment va duyet cac comment chua duoc ghep vao cac dong cua tung Picklist
+            List<PicklistType> listPicklistType = new List<PicklistType>();
+            AddCommentNormal(ref listDataOut, picklist_1, picklist_2, ref listPicklistType);
+
+            foreach (var itemCurrent in listPicklistType)
+            {
+                bool checkAdd = false;//Bien tam dung de kiem tra xem da add du lieu hay chua
+                foreach (var itemOut in listDataOut)
+                {
+                    if(itemOut.tempMain == null)
+                    {
+                        continue;
+                    }//Neu null thi bo qua
+                    if(itemOut.tempMain != MdlCommn.EXIST_ALL_TEMPMAIN)
+                    {
+                        continue;
+                    }//Neu khong phai lam tempMain EL thi bo qua
+
+                    if(itemOut.col_1 == itemCurrent.plItem)
+                    {
+                        itemOut.comment_1 += itemCurrent.plComment;
+                        checkAdd = true;
+                    }
+
+                    if(itemOut.col_2 == itemCurrent.plItem)
+                    {
+                        itemOut.comment_1 += itemCurrent.plComment;
+                        checkAdd = true;
+                    }
+                }
+
+                if(checkAdd == false)
+                {
+                    DataOut s = new DataOut();
+                    if (itemCurrent.isFirst)
+                    {
+                        s.col_1 = itemCurrent.plItem;
+                        s.comment_1 = itemCurrent.plComment;
+                    }
+                    else
+                    {
+                        s.col_2 = itemCurrent.plItem;
+                        s.comment_2 = itemCurrent.plComment;
+                    }
+                    listDataOut.Add(s);
+                }
+            }
+
+            //Add Check Y voi truong hop EL thi thoi
+            AddCheckY(ref listDataOut, listLKTT_1, listLKTT_2);
+            
+        }
+
+
+        private static void AddCheckY (ref List<DataOut> listDataOut, List<LKTT_ETSD> listLKTT_1, List<LKTT_ETSD> listLKTT_2)
+        {
+            //Duyet du lieu xem co check Y hay khong
+            //Phan nay can xem lai
+            foreach (var item in listDataOut)
+            {
+                //No thuoc truong hop duyet sau cung EL thi thoi
+                if (item.tempMain != null)
+                {
+                    if (item.tempMain == MdlCommn.EXIST_ALL_TEMPMAIN)
+                    {
+                        continue;
+                    }
+                }
+
+
+                //Duyet truong hop tich Y thong thuong
+                var checkOne_Y = listLKTT_1.Any(p => p.checkY == true && p.dataL == item.col_1);
+                if (checkOne_Y)
+                {
+                    item.comment_1 = MdlCommn.CHECKY + item.comment_1;
+                }
+
+                var checkTwo_Y = listLKTT_2.Any(p => p.checkY == true && p.dataL == item.col_2);
+                if (checkTwo_Y)
+                {
+                    item.comment_2 = MdlCommn.CHECKY + item.comment_2;//Neu la tich Y thi cong them CheckY
+                }
+            }
+        }
+
+        private static void AddCommentNormal( ref List<DataOut> listDataOut, List<Picklist> picklist_1, List<Picklist> picklist_2, ref List<PicklistType> listPicklistType)
         {
             //Thuc hien lay ra cac comment cua item
             var listComment_1 = picklist_1.Where(p => string.IsNullOrEmpty(p.plComment) == false).ToList();
@@ -124,7 +219,7 @@ namespace SMT_Picklist_Compare.Function
                 bool checkInList = false;//Bien co
                 foreach (var itemCurrent in listDataOut)
                 {
-                    if(itemCurrent.col_1 == itemLK.plItem)//Neu item gion nhau
+                    if (itemCurrent.col_1 == itemLK.plItem)//Neu item gion nhau
                     {
                         itemCurrent.comment_1 += itemLK.plComment;
                         checkInList = true;
@@ -132,12 +227,7 @@ namespace SMT_Picklist_Compare.Function
                 }
                 if (checkInList == false)//Xet truong hop chua co trong listResult
                 {
-                    //MAI CAN PHAI LAM O DAU
-                    
-                    DataOut value = new DataOut();//Thuc hien add comment moi
-                    value.col_1 = itemLK.plItem;
-                    value.comment_1 = itemLK.plComment;
-                    listDataOut.Add(value);
+                    listPicklistType.Add(new PicklistType(itemLK, true));//Truong hop commment thuoc picklist_1
                 }
             }
 
@@ -156,27 +246,7 @@ namespace SMT_Picklist_Compare.Function
                 }
                 if (checkInList == false)
                 {
-                    DataOut value = new DataOut();
-                    value.col_2 = itemLK.plItem;
-                    value.comment_2 = itemLK.plComment;
-                    listDataOut.Add(value);
-                }
-            }
-
-            //Duyet du lieu xem co check Y hay khong
-            //Phan nay can xem lai
-            foreach (var item in listDataOut)
-            {
-                var checkOne_Y = listLKTT_1.Any(p => p.checkY == true && p.dataL == item.col_1);
-                if (checkOne_Y)
-                {
-                    item.comment_1 = MdlCommn.CHECKY + item.comment_1;
-                }
-
-                var checkTwo_Y = listLKTT_2.Any(p => p.checkY == true && p.dataL == item.col_2);
-                if (checkTwo_Y)
-                {
-                    item.comment_2 = MdlCommn.CHECKY + item.comment_2;//Neu la tich Y thi cong them CheckY
+                   listPicklistType.Add(new PicklistType(itemLK, false));//Truong hop comment thuoc picklist_2
                 }
             }
         }

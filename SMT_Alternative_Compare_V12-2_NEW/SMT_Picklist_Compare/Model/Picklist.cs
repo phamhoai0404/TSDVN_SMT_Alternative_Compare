@@ -26,4 +26,18 @@ namespace SMT_Picklist_Compare.Model
             this.plComment = s.plComment;
         }
     }
+
+    /// <summary>
+    /// Dung de kiem tra 1 hay 2
+    /// </summary>
+    public class PicklistType : Picklist
+    {
+        public bool isFirst { get; set; }
+        public PicklistType(Picklist s, bool isFirst)
+        {
+            this.plComment = s.plComment;
+            this.plItem = s.plItem;
+            this.isFirst = isFirst;
+        }
+    }
 }
