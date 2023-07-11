@@ -22,7 +22,10 @@ namespace SMT_Picklist_Compare.Function
                 GetDataWhenE(ref listResult, listLKTT, picklist_2, itemList_1.plItem);
                 GetDataWhenL(ref listResult, listLKTT, picklist_2, itemList_1.plItem);
             }
+            //Thuc hien xoa bo di cac dong co gia tri col1 = col1, col2= col2 giong nhau
             RemoveDuplicate(ref listResult);
+
+            //Thuc hien xoa bo di gia tri giong nhau col1= col2 ma khong xuat hien o dong khac
             RemoveNotIn(ref listResult);
         }
 

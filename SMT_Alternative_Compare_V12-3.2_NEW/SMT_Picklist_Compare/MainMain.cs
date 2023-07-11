@@ -124,7 +124,12 @@ namespace SMT_Picklist_Compare
                     MessageBox.Show("Không có cặp link kiện thay thế!","Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
+
+                //Thuc hien add vi tri Address cua item
                 Function.ActionFeeder.AddAddress(ref this.listDataOut, listFeeder_1, listFeeder_2, listLKTT_ALL);
+
+                //Thuc hien xoa bo di cac gia tri null dong thoi o 2 add va khong co 
+                Function.ActionDupplicate.RemoveDupplicate(ref this.listDataOut);
 
                 this.GetInfo();//Thuc hien lay ten
                 this.dgvResult.DataSource = listDataOut;

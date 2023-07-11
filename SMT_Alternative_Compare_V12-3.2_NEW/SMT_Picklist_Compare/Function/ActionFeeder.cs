@@ -47,7 +47,7 @@ namespace SMT_Picklist_Compare.Function
         }
 
         /// <summary>
-        /// Thuc hien lay gan dia chi 
+        /// Thuc hien lay gan dia chi voi truong hop khong phai la CHU Y: 2 VI TRI
         /// </summary>
         /// <param name="listDataOut"></param>
         /// <param name="listFeeder_1"></param>
@@ -148,7 +148,6 @@ namespace SMT_Picklist_Compare.Function
                         }
                     }
                 }
-               
             }
         }
     }

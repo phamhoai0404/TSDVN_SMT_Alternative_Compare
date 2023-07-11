@@ -129,49 +129,8 @@ namespace SMT_Picklist_Compare.Function
             List<PicklistType> listPicklistType = new List<PicklistType>();
             AddCommentNormal(ref listDataOut, picklist_1, picklist_2, ref listPicklistType);
 
-            foreach (var itemCurrent in listPicklistType)
-            {
-                bool checkAdd = false;//Bien tam dung de kiem tra xem da add du lieu hay chua
-                foreach (var itemOut in listDataOut)
-                {
-                    if(itemOut.tempMain == null)
-                    {
-                        continue;
-                    }//Neu null thi bo qua
-                    if(itemOut.tempMain != MdlCommn.EXIST_ALL_TEMPMAIN)
-                    {
-                        continue;
-                    }//Neu khong phai lam tempMain EL thi bo qua
-
-                    if(itemOut.col_1 == itemCurrent.plItem)
-                    {
-                        itemOut.comment_1 += itemCurrent.plComment;
-                        checkAdd = true;
-                    }
-
-                    if(itemOut.col_2 == itemCurrent.plItem)
-                    {
-                        itemOut.comment_1 += itemCurrent.plComment;
-                        checkAdd = true;
-                    }
-                }
-
-                if(checkAdd == false)
-                {
-                    DataOut s = new DataOut();
-                    if (itemCurrent.isFirst)
-                    {
-                        s.col_1 = itemCurrent.plItem;
-                        s.comment_1 = itemCurrent.plComment;
-                    }
-                    else
-                    {
-                        s.col_2 = itemCurrent.plItem;
-                        s.comment_2 = itemCurrent.plComment;
-                    }
-                    listDataOut.Add(s);
-                }
-            }
+            //Add comment o truong hop khac
+            AddCommentOther(ref listDataOut, listPicklistType);
 
             //Add Check Y voi truong hop EL thi thoi
             AddCheckY(ref listDataOut, listLKTT_1, listLKTT_2);
@@ -210,6 +169,8 @@ namespace SMT_Picklist_Compare.Function
             }
         }
 
+        
+
         private static void AddCommentNormal( ref List<DataOut> listDataOut, List<Picklist> picklist_1, List<Picklist> picklist_2, ref List<PicklistType> listPicklistType)
         {
             //Thuc hien lay ra cac comment cua item
@@ -247,6 +208,61 @@ namespace SMT_Picklist_Compare.Function
                 if (checkInList == false)
                 {
                    listPicklistType.Add(new PicklistType(itemLK, false));//Truong hop comment thuoc picklist_2
+                }
+            }
+        }
+
+        /// <summary>
+        /// Thuc hien add comment o item chua trong listDataOut theo truong hop binh thuong
+        /// </summary>
+        /// <param name="listDataOut"></param>
+        /// <param name="listPicklistType">Danh sach cac item chua duoc duyet comment </param>
+        private static void AddCommentOther(ref List<DataOut> listDataOut, List<PicklistType> listPicklistType)
+        {
+            foreach (var itemCurrent in listPicklistType)
+            {
+                bool checkAdd = false;//Bien tam dung de kiem tra xem da add du lieu hay chua
+                foreach (var itemOut in listDataOut)
+                {
+                    if (itemOut.tempMain == null)
+                    {
+                        continue;
+                    }//Neu null thi bo qua
+                    if (itemOut.tempMain != MdlCommn.EXIST_ALL_TEMPMAIN)
+                    {
+                        continue;
+                    }//Neu khong phai lam tempMain EL thi bo qua
+
+                    //Kiem tra xem 1 co =?
+                    if (itemOut.col_1 == itemCurrent.plItem)
+                    {
+                        itemOut.comment_1 += itemCurrent.plComment;
+                        checkAdd = true;
+                    }
+
+                    //Kiem tra xem 2 co =?
+                    if (itemOut.col_2 == itemCurrent.plItem)
+                    {
+                        itemOut.comment_1 += itemCurrent.plComment;
+                        checkAdd = true;
+                    }
+                }
+
+                //Trong truong hop comment chua duoc add vao thi can phai add them comment vao voi item la moi
+                if (checkAdd == false)
+                {
+                    DataOut s = new DataOut();
+                    if (itemCurrent.isFirst)
+                    {
+                        s.col_1 = itemCurrent.plItem;
+                        s.comment_1 = itemCurrent.plComment;
+                    }
+                    else
+                    {
+                        s.col_2 = itemCurrent.plItem;
+                        s.comment_2 = itemCurrent.plComment;
+                    }
+                    listDataOut.Add(s);
                 }
             }
         }

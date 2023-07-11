@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Function\ActionCheckEL.cs" />
+    <Compile Include="Function\ActionDupplicate.cs" />
     <Compile Include="Function\ActionFeeder.cs" />
     <Compile Include="Function\ActionLKTT.cs" />
     <Compile Include="Function\ActionMain.cs" />
