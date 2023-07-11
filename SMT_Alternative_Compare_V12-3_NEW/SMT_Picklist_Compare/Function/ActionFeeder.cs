@@ -83,7 +83,7 @@ namespace SMT_Picklist_Compare.Function
                         }
                         else
                         {
-                            itemCurrent.address_1 = "NULL";//Sau khi duyet no va duyet con ben canh no van khong co du lieu thi ghi la NO
+                            itemCurrent.address_1 = MdlCommn.NULL_ADDRESS;//Sau khi duyet no va duyet con ben canh no van khong co du lieu thi ghi la NO
                         }
                     }
                 }
@@ -109,7 +109,7 @@ namespace SMT_Picklist_Compare.Function
                         }
                         else
                         {
-                            itemCurrent.address_2 = "NULL";
+                            itemCurrent.address_2 = MdlCommn.NULL_ADDRESS;
                         }
                     }
                 }

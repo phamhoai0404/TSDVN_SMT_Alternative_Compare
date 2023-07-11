@@ -14,7 +14,7 @@ namespace SMT_Picklist_Compare.Model
         public string col_2 { get; set; }
         public string address_2 { get; set; }
         public string comment_2 { get; set; }
-        public string? tempMain { get; set; }
+        public string tempMain { get; set; }
 
         public DataOut()
         {

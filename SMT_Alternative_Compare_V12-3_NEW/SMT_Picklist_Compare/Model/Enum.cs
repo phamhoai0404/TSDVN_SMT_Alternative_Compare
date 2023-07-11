@@ -10,7 +10,8 @@ namespace SMT_Picklist_Compare.Model
     {
         public const string CHECKY = "(@Y)";
         public const string EXIST_ALL_EL = "(@PICKLIST)";
-        public const string EXIST_ALL_TEMPMAIN = "EXIST EL";
+        public const string EXIST_ALL_TEMPMAIN = "CHU Y: 2 VI TRI";
+        public const string NULL_ADDRESS = "NULL";
     }
     public class ResultSelectFile
     {

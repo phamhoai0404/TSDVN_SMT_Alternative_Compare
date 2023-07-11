@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace SMT_Picklist_Compare.Function
@@ -67,13 +68,15 @@ namespace SMT_Picklist_Compare.Function
             dgvResult.Columns[5].HeaderText = "Ghi chu 2";
             dgvResult.Columns[6].HeaderText = "Item Main";
 
-            dgvResult.Columns[0].Width = 150;
-            dgvResult.Columns[1].Width = 65;
-            dgvResult.Columns[2].Width = 45;
-            dgvResult.Columns[3].Width = 150;
-            dgvResult.Columns[4].Width = 65;
-            dgvResult.Columns[5].Width = 45;
-            dgvResult.Columns[6].Width = 160;
+            //dgvResult.Columns[0].Width = 150;
+            //dgvResult.Columns[1].Width = 65;
+            //dgvResult.Columns[2].Width = 45;
+            //dgvResult.Columns[3].Width = 150;
+            //dgvResult.Columns[4].Width = 65;
+            //dgvResult.Columns[5].Width = 45;
+            //dgvResult.Columns[6].Width = 160;
+            dgvResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill; // Thiết lập tỷ lệ cột để điều chỉnh kích thước cho đầy đủ không gian hiển thị
+            dgvResult.AutoResizeColumns(System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells); // Tự động điều chỉnh kích thước cột dựa trên nội dung ô dữ liệu
 
         }
 

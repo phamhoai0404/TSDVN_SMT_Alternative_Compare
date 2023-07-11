@@ -20,8 +20,7 @@ namespace SMT_Picklist_Compare.Function
             {
                 //Lay group thuoc thay the cho E
                 var listChild = listLKTT_ALL.Where(x => x.dataE == itemCurrent).ToList();
-                AddItemMain(ref listDataOut, listFeeder_1, listFeeder_2, itemCurrent);//Add chinh no vao phu hop
-
+                Add_EL(ref listDataOut, listFeeder_1, listFeeder_2, itemCurrent,  true);//Add chinh no vao phu hop
                 foreach (var itemChild in listChild)
                 {
                     //Neu no xuat hien trong listExistEL thì thôi
@@ -30,7 +29,7 @@ namespace SMT_Picklist_Compare.Function
                         continue;
                     }
 
-                    AddItem_Child(ref listDataOut, listFeeder_1, listFeeder_2, itemChild.dataL);
+                    Add_EL(ref listDataOut, listFeeder_1, listFeeder_2, itemChild.dataL, false);
                 }
             }
 
@@ -61,68 +60,33 @@ namespace SMT_Picklist_Compare.Function
             }
         }
 
-        private static void AddItemMain(ref List<DataOut> listDataOut, List<Feeder> listFeeder_1, List<Feeder> listFeeder_2, string itemCurrent)
+        private static void Add_EL(ref List<DataOut> listDataOut, List<Feeder> listFeeder_1, List<Feeder> listFeeder_2, string itemCurrent, bool isMain)
         {
-            bool boolFeeder2 = false;
-            var checkInFeeder = listFeeder_1.FirstOrDefault(p => p.feederItem == itemCurrent);
-            if (checkInFeeder == null)
-            {
-                checkInFeeder = listFeeder_2.FirstOrDefault(p => p.feederItem == itemCurrent);
-                boolFeeder2 = true;
-            }
+            //Kiem tra item trong ItemMain
             DataOut s = new DataOut();
-            if (checkInFeeder == null)
-            {
-                s.col_1 = itemCurrent;
-                s.address_1 = "NULL";
-                s.comment_1 = MdlCommn.EXIST_ALL_EL;
-            }
-            else //Neu khong xuat hien o 1 thi check xuat hien o 2
-            {
-                if (boolFeeder2 == false)
-                {
-                    s.col_1 = itemCurrent;
-                    s.address_1 = checkInFeeder.feederAddress;
-                    s.comment_1 = MdlCommn.EXIST_ALL_EL;
-                }
-                else
-                {
-                    s.col_2 = itemCurrent;
-                    s.address_2 = checkInFeeder.feederAddress;
-                    s.comment_2 = MdlCommn.EXIST_ALL_EL;
-                }
-            }
+            var checkInFeeder_1 = listFeeder_1.FirstOrDefault(p => p.feederItem == itemCurrent);
+            s.col_1 = itemCurrent;
+            s.address_1 = checkInFeeder_1 == null ? MdlCommn.NULL_ADDRESS : checkInFeeder_1.feederAddress;
+            s.comment_1 = MdlCommn.EXIST_ALL_EL;
+
+            var checkInFeeder_2 = listFeeder_2.FirstOrDefault(p => p.feederItem == itemCurrent);
+            s.col_2 = itemCurrent;
+            s.address_2 = checkInFeeder_2 == null ? MdlCommn.NULL_ADDRESS : checkInFeeder_2.feederAddress;
+            s.comment_2 = MdlCommn.EXIST_ALL_EL;
+
             s.tempMain = MdlCommn.EXIST_ALL_TEMPMAIN;
-            listDataOut.Add(new DataOut(s));
-        }
-        private static void AddItem_Child(ref List<DataOut> listDataOut, List<Feeder> listFeeder_1, List<Feeder> listFeeder_2, string itemCurrent)
-        {
-            bool boolFeeder2 = false;
-            var checkInFeeder = listFeeder_1.FirstOrDefault(p => p.feederItem == itemCurrent);
-            if (checkInFeeder == null)
+
+            if (isMain)
             {
-                checkInFeeder = listFeeder_2.FirstOrDefault(p => p.feederItem == itemCurrent);
-                boolFeeder2 = true;
-            }
-            DataOut s = new DataOut();
-            if (checkInFeeder != null)
-            {
-                if (boolFeeder2 == false)
-                {
-                    s.col_1 = itemCurrent;
-                    s.address_1 = checkInFeeder.feederAddress;
-                    s.comment_1 = MdlCommn.EXIST_ALL_EL;
-                }
-                else
-                {
-                    s.col_2 = itemCurrent;
-                    s.address_2 = checkInFeeder.feederAddress;
-                    s.comment_2 = MdlCommn.EXIST_ALL_EL;
-                }
-                s.tempMain = MdlCommn.EXIST_ALL_TEMPMAIN;
                 listDataOut.Add(new DataOut(s));
             }
-            
+            else
+            {
+                if(s.address_1 != MdlCommn.NULL_ADDRESS || s.address_2 != MdlCommn.NULL_ADDRESS)
+                {
+                    listDataOut.Add(new DataOut(s));
+                }
+            }
         }
     }
 }

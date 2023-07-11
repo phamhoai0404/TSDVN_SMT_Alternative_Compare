@@ -98,3 +98,13 @@ D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-2
 D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-2_NEW\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.csproj.CoreCompileInputs.cache
 D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-2_NEW\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.exe
 D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-2_NEW\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.pdb
+D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-3_NEW\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.csprojAssemblyReference.cache
+D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-3_NEW\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.MainMain.resources
+D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-3_NEW\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.Properties.Resources.resources
+D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-3_NEW\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.csproj.GenerateResource.cache
+D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-3_NEW\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.csproj.CoreCompileInputs.cache
+D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-3_NEW\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.exe
+D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-3_NEW\SMT_Picklist_Compare\obj\Debug\SMT_Picklist_Compare.pdb
+D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-3_NEW\SMT_Picklist_Compare\bin\Debug\SMT_Picklist_Compare.exe.config
+D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-3_NEW\SMT_Picklist_Compare\bin\Debug\SMT_Picklist_Compare.exe
+D:\hoai\Hoai_Daotao\vs\SMT\SMT_Alternative_Compare\SMT_Alternative_Compare_V12-3_NEW\SMT_Picklist_Compare\bin\Debug\SMT_Picklist_Compare.pdb
