@@ -51,6 +51,8 @@ namespace SMT_Picklist_Compare.Function
                             {
                                 if (string.IsNullOrEmpty(tempComment) == false)//Neu khong co du lieu comment thi thoi con co du lieu thi thuc hien thay doi comment
                                 {
+                                    //Thay vi su dung foreach ta co the dung tim ra vi tri roi thay doi gia tri cua comment
+
                                     foreach (var picklist in listPicklist)
                                     {
                                         if (picklist.plItem == tempItem)
