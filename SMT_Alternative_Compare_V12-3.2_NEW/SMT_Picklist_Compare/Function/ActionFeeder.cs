@@ -64,8 +64,9 @@ namespace SMT_Picklist_Compare.Function
                         continue;
                 }
                 
-                bool checkAddress_1 = false, checkAddress_2 = false;
+                bool checkAddress_1 = false, checkAddress_2 = false;//Bien dung de check xem ad 
 
+                //Truong hop co due lieu o col 1
                 if (string.IsNullOrEmpty(itemCurrent.col_1) == false)
                 {
                     var objectOne = listFeeder_1.FirstOrDefault(p => p.feederItem == itemCurrent.col_1);
@@ -92,6 +93,7 @@ namespace SMT_Picklist_Compare.Function
                     checkAddress_1 = true;//Truong hop khong co du lieu
                 }
 
+                //Truong hop co du lieu co col 2
                 if (string.IsNullOrEmpty(itemCurrent.col_2) == false)
                 {
                     var objectTwo = listFeeder_2.FirstOrDefault(p => p.feederItem == itemCurrent.col_2);
