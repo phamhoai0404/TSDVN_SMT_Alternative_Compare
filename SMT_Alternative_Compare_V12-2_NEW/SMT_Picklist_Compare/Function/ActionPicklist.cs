@@ -126,12 +126,14 @@ namespace SMT_Picklist_Compare.Function
                 {
                     if(itemCurrent.col_1 == itemLK.plItem)//Neu item gion nhau
                     {
-                        itemCurrent.comment_1 = itemLK.plComment;
+                        itemCurrent.comment_1 += itemLK.plComment;
                         checkInList = true;
                     }
                 }
                 if (checkInList == false)//Xet truong hop chua co trong listResult
                 {
+                    //MAI CAN PHAI LAM O DAU
+                    
                     DataOut value = new DataOut();//Thuc hien add comment moi
                     value.col_1 = itemLK.plItem;
                     value.comment_1 = itemLK.plComment;
@@ -148,7 +150,7 @@ namespace SMT_Picklist_Compare.Function
                 {
                     if (itemCurrent.col_2 == itemLK.plItem)//Neu item gion nhau
                     {
-                        itemCurrent.comment_2 = itemLK.plComment;
+                        itemCurrent.comment_2 += itemLK.plComment;
                         checkInList = true;
                     }
                 }

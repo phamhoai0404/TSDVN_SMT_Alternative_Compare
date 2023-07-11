@@ -105,8 +105,16 @@ namespace SMT_Picklist_Compare
                 List<Picklist> pickList2_After = new List<Picklist>();
                 Function.ActionPicklist.CompareTwoFile(picklist_1, picklist_2, listLKTT_ALL, ref pickList1_After, ref pickList2_After);
 
+               
                 this.updateLable("Thực hiện so sánh ");
                 Function.ActionMain.ActionCompareETSD(pickList1_After, picklist_2, listLKTT_ALL, ref this.listDataOut);
+
+                List<Feeder> listFeeder_1 = new List<Feeder>();
+                List<Feeder> listFeeder_2 = new List<Feeder>();
+                Function.ActionFeeder.GetDataCSV(this.valueInput.fileLinkData1, ref listFeeder_1);
+                Function.ActionFeeder.GetDataCSV(this.valueInput.fileLinkData2, ref listFeeder_2);
+                this.updateLable("Thực hiện kiểm tra xuat hien 2 EL");
+                Function.ActionCheckEL.GetAddressEL(ref this.listDataOut,listLKTT_ALL, listFeeder_1, listFeeder_2);
 
                 this.updateLable("Thực hiện add comment");
                 Function.ActionPicklist.AddComment(ref this.listDataOut, picklist_1, picklist_2, listLKTT_1, listLKTT_2);
@@ -116,12 +124,6 @@ namespace SMT_Picklist_Compare
                     MessageBox.Show("Không có cặp link kiện thay thế!","Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-
-                List<Feeder> listFeeder_1 = new List<Feeder>();
-                List<Feeder> listFeeder_2 = new List<Feeder>();
-                Function.ActionFeeder.GetDataCSV(this.valueInput.fileLinkData1, ref listFeeder_1);
-                Function.ActionFeeder.GetDataCSV(this.valueInput.fileLinkData2, ref listFeeder_2);
-
                 Function.ActionFeeder.AddAddress(ref this.listDataOut, listFeeder_1, listFeeder_2, listLKTT_ALL);
 
                 this.GetInfo();//Thuc hien lay ten

@@ -377,9 +377,9 @@ namespace SMT_Picklist_Compare
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(466, 82);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(176, 16);
+            this.label11.Size = new System.Drawing.Size(186, 16);
             this.label11.TabIndex = 16;
-            this.label11.Text = "Version10: 07/07/2023 16h35";
+            this.label11.Text = "Version12.2: 10/07/2023 16h00";
             // 
             // pnlMain2
             // 

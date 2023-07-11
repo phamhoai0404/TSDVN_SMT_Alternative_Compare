@@ -9,6 +9,8 @@ namespace SMT_Picklist_Compare.Model
     public class MdlCommn
     {
         public const string CHECKY = "(@Y)";
+        public const string EXIST_ALL_EL = "(@PICKLIST)";
+        public const string EXIST_ALL_TEMPMAIN = "EXIST EL";
     }
     public class ResultSelectFile
     {

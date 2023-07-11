@@ -57,6 +57,13 @@ namespace SMT_Picklist_Compare.Function
         {
             foreach (var itemCurrent in listDataOut)
             {
+                //Truong hop duyet roi thi thoi
+                if(itemCurrent.tempMain != null)
+                {
+                    if(itemCurrent.tempMain == MdlCommn.EXIST_ALL_TEMPMAIN)
+                        continue;
+                }
+                
                 bool checkAddress_1 = false, checkAddress_2 = false;
 
                 if (string.IsNullOrEmpty(itemCurrent.col_1) == false)

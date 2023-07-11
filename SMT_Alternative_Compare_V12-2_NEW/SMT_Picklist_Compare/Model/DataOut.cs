@@ -57,6 +57,7 @@ namespace SMT_Picklist_Compare.Model
             this.comment_2 = s.comment_2;
             this.address_1 = s.address_1;
             this.address_2 = s.address_2;
+            this.tempMain = s.tempMain;
         }
        
         
